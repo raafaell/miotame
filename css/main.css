@@ -1,6 +1,6 @@
 	.body {
 		width: 100%;
-		padding: 35% 50% 65% 50%;
+		padding: 300px 50% 0 50%;
 		margin-left: -316px;
 
 	}
@@ -29,7 +29,7 @@
 		box-shadow: 0px 0px 12px -5px #585858;
 	}
 	input:-webkit-autofill {
-		background-color: #FAFFBD !important;
+		background-color: #F2F2F2 !important;
 	}
 	.submitbtn {
 		width: 200px;
