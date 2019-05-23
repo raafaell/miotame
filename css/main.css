@@ -1,3 +1,21 @@
+	h5 {
+		font-family: 'Jura', sans-serif;
+		color: #333;
+	    width: 632px;
+	    text-align: center;
+	    padding: 0;
+	    display: block;
+	    margin-block-start: 0;
+	    margin-block-end: 0;
+	    margin-inline-start: 0px;
+	    margin-inline-end: 0px;
+	}
+	p {
+		margin-block-start: 0;
+	    margin-block-end: 0;
+	    margin-inline-start: 0px;
+	    margin-inline-end: 0px;
+	}
 	.body {
 		width: 100%;
 		padding: 300px 50% 0 50%;
@@ -11,8 +29,15 @@
 	.hide{
 		display: none;
 	}
+	.logoarea {
+		padding-bottom: 60px;
+	}
 	.logo {
-
+		font-family: 'Jura', sans-serif;
+		font-size: 32px;
+	    color: #333;
+	    width: 632px;
+	    text-align: center;
 	}
 	.AddressInput {
 	    display: block;
