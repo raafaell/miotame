@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /newIOTA/
+
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.+)$ ?url=/newIOTA/$1 [L]

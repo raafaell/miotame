@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IOTA URL Shortener</title>
+
+	    <script src="js/iotajslib.min.js" type="text/javascript"></script>    
+
+
+
+</head>
+<body>
+
+	<p id="app"></p>
+
+<script type="text/javascript">
+
+
+var iota = core.composeAPI({
+provider: 'https://nodes.devnet.iota.org:443'
+});
+
+	if urltag = window.location.pathname.slice(9, 18) return;
+	console.log(urltag);
+
+async function send(address){
+  try{
+    var address = address
+    if(address.length != 90){
+      console.log("Address too short");
+      return
+    }
+    var tag = address.slice(81, 90)
+    if(address.slice(81, 90) != checksum.addChecksum(address.slice(0, 81)).slice(81, 90)){
+      console.log("Invalid checksum");
+      return
+    }
+    var transfers = [{
+        address: address, //ADDRESS ENTERED BY USER
+        value: 0, // 0 VALUE
+        tag: tag, // CHECKSUM
+    }]
+
+    let trytes = await iota.prepareTransfers((seed = '9'.repeat(81)), transfers)
+    let bundle = await iota.sendTrytes(trytes, (depth = 3), (minWeightMagnitude = 14))
+    console.log(`TRANSACTION: ${bundle[0].hash}`)
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+
+async function getAddressWithTag(tag){
+  try{
+    let hashesWithTag = await iota.findTransactions({ tags: [tag] })
+    let txObjects = await iota.getTransactionObjects(hashesWithTag)
+    let results = []
+	txObjects.forEach(tx => {
+      let addressWithChecksum = checksum.addChecksum(tx.address)
+      if(addressWithChecksum.slice(81, 90) == tag){
+        results.push(addressWithChecksum)
+      }
+    })
+	if(results.length == 0){
+		console.log("No matching tx found with tag: "+tag)
+		return
+	}
+	let equal = results.every( (val, i, arr) => val === arr[0] )
+	if(equal == true){
+    	console.log("Address found: "+results[0]);
+	} else {
+		console.error("Different addresses found")
+	}
+  } 
+  catch (err) {
+    console.error(err)
+  }
+}
+
+
+async function runApp(){
+  try{
+    let address = document.getElementById("UserAddress").value;
+	console.log("tag: "+address.slice(81, 90))
+	document.getElementById("app").innerHTML = "Your Shorturl is: https://miota.me/newIOTA/" + address.slice(81, 90);
+    await send(address)
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    await getAddressWithTag(address.slice(81, 90))
+  }
+  catch(e){
+    console.error(e);
+  }
+}
+
+</script>
+
+		Your Address: <input type="text" name="address" id="UserAddress">
+			<input type="button" name="submit" value="Submit" onclick="runApp();">
+		 
+
+<p style="font-size: 20px;" id="app"></p>
+
+</body>
+</html>
