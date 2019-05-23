@@ -1,35 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>IOTA Address Shortener</title>
 
-	    <script src="js/iotajslib.min.js" type="text/javascript"></script>    
-	   	<script src="js/app.js" type="text/javascript"></script>
-		<link rel="stylesheet" type="text/css" href="css/main.css">
+<head>
+  <title>IOTA Address Shortener</title>
+
+  <script src="js/iotajslib.min.js" type="text/javascript"></script>
+  <script src="js/app.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
+
 <body>
 
 
-				<div class="logo" id="logo"></div>
-				<div class="AddressInput" id="AddressInput">
-						Your Address: <input type="text" name="address" id="UserAddress">
-									<input type="button" name="submit" value="Submit" onclick="runApp();">
-				</div>
+  <div class="logo" id="logo"></div>
+  <div class="AddressInput" id="AddressInput">
+    Your Address: <input type="text" name="address" id="UserAddress">
+    <input type="button" name="submit" value="Submit" onclick="runApp();">
+  </div>
 
-				<div class="app" id="app"></div>
-				<div class="error" id="error"></div>
+  <div class="app" id="app"></div>
+  <div class="error" id="error"></div>
 
 
-				<script type="text/javascript">
-	
-					var  currenturl = window.location.href;
-			  		if(currenturl.length > 25) {
-					var element = document.getElementById("AddressInput")
-					element.classList.add("hide");}
-					
-				</script>
+  <script type="text/javascript">
+
+    var currenturl = window.location.href;
+    if (currenturl.length > 25) {
+      var element = document.getElementById("AddressInput")
+      element.classList.add("hide");
+    }
+
+  </script>
 
 
 
 </body>
+
 </html>

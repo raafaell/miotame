@@ -1,37 +1,29 @@
 var iota = core.composeAPI({
-provider: 'https://nodes.devnet.iota.org:443'
+  provider: 'https://nodes.thetangle.org:443'
 });
 
-	let urltag = window.location.pathname.slice(9, 18)
-	if(urltag.length != 9){
-		console.log("No shorturl found")
-	} else
+let urltag = window.location.pathname.slice(9, 18)
+if (urltag.length != 9) {
+  console.log("No shorturl found")
+}
 
-    	iota.findTransactionObjects({ tags: [urltag] })
-	   .then(tags => {
-	       console.log(`ADDRESS FOUND: ${tags[0].address}`) 
-	       document.getElementById("app").innerHTML =tags[0].address;
-	   })
-	   .catch(err => {
-	   });
-
-
-async function send(address){
-  try{
+async function sendTag(address) {
+  try {
     var address = address
-    if(address.length != 90){
-      console.log("Address too short");
+    if (address.length != 90) {
+      console.log("Invalid address length");
       return
     }
     var tag = address.slice(81, 90)
-    if(address.slice(81, 90) != checksum.addChecksum(address.slice(0, 81)).slice(81, 90)){
+    console.log("Tag: " + tag);
+    if (address.slice(81, 90) != checksum.addChecksum(address.slice(0, 81)).slice(81, 90)) {
       console.log("Invalid checksum");
       return
     }
     var transfers = [{
-        address: address, 
-        value: 0,
-        tag: tag, 
+      address: address,
+      value: 0,
+      tag: tag,
     }]
 
     let trytes = await iota.prepareTransfers((seed = '9'.repeat(81)), transfers)
@@ -43,51 +35,55 @@ async function send(address){
   }
 }
 
-async function getAddressWithTag(tag){
-  try{
+async function getAddressWithTag(tag) {
+  try {
+    if (!tag.match(/^[A-Z9]{9}$/)) {
+      console.error("Invalid tag")
+      return
+    }
     let hashesWithTag = await iota.findTransactions({ tags: [tag] })
     let txObjects = await iota.getTransactionObjects(hashesWithTag)
     let results = []
-	txObjects.forEach(tx => {
+    txObjects.forEach(tx => {
       let addressWithChecksum = checksum.addChecksum(tx.address)
-      if(addressWithChecksum.slice(81, 90) == tag){
+      if (addressWithChecksum.slice(81, 90) == tag) {
         results.push(addressWithChecksum)
       }
     })
-	if(results.length == 0){
-		console.log("No matching tx found with tag: "+tag)
-		return
-	}
-	let equal = results.every( (val, i, arr) => val === arr[0] )
-	if(equal == true){
-    	console.log("Address found: "+results[0]);
-	} else {
-		console.error("Different addresses found")
-	}
-  } 
+    if (results.length == 0) {
+      console.log("No matching tx found with tag: " + tag)
+      return
+    }
+    let equal = results.every((val, i, arr) => val === arr[0])
+    if (equal == true) {
+      console.log("Address found: " + results[0]);
+    } else {
+      console.error("Different addresses found: " + array)
+    }
+  }
   catch (err) {
     console.error(err)
   }
 }
 
 
-async function runApp(){
-  try{
+async function runApp() {
+  try {
     let address = document.getElementById("UserAddress").value;
-	console.log("tag: "+address.slice(81, 90))
-    if(address.slice(81, 90) != checksum.addChecksum(address.slice(0, 81)).slice(81, 90)){
-      document.getElementById("app").innerHTML = "Your Address is invalid";
+    console.log("tag: " + address.slice(81, 90))
+    if (address.slice(81, 90) != checksum.addChecksum(address.slice(0, 81)).slice(81, 90)) {
+      document.getElementById("app").innerHTML = "Your address is invalid";
       return
     } else
-    var link = document.createElement('a');
-    link.textContent = 'https://miota.me/'+address.slice(81, 90);
+      var link = document.createElement('a');
+    link.textContent = 'https://miota.me/' + address.slice(81, 90);
     link.href = address.slice(81, 90);
-    document.getElementById('app').appendChild(link);;
-    await send(address)
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    document.getElementById('app').appendChild(link);
+    await sendTag(address)
+    await new Promise(resolve => setTimeout(resolve, 1000))
     await getAddressWithTag(address.slice(81, 90))
   }
-  catch(e){
-    console.error(e);
+  catch (e) {
+    console.error(e)
   }
 }
