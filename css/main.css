@@ -1,7 +1,8 @@
 	h5 {
 		font-family: 'Jura', sans-serif;
-		color: #333;
-	    width: 632px;
+	    font-size: 14px;
+	    color: #333;
+	    width: 732px;
 	    text-align: center;
 	    padding: 0;
 	    display: block;
@@ -16,10 +17,23 @@
 	    margin-inline-start: 0px;
 	    margin-inline-end: 0px;
 	}
-	.body {
-		width: 100%;
-		padding: 300px 50% 0 50%;
-		margin-left: -316px;
+	a {
+		text-decoration: none;
+	}
+	.form {
+
+	 	width: 732px;
+
+	}
+	.main {
+
+	    display: block;
+	    margin-top: 300px;
+	    margin-left: -366px;
+	    padding-left: 50%;
+	    margin-right: 50%;
+	    width: 100%;
+
 
 	}
 
@@ -30,25 +44,64 @@
 		display: none;
 	}
 	.logoarea {
-		padding-bottom: 60px;
+	    padding-bottom: 60px;
+	    width: 732px;
+
 	}
 	.logo {
 		font-family: 'Jura', sans-serif;
-		font-size: 32px;
+	    font-size: 64px;
 	    color: #333;
-	    width: 632px;
+	    width: 732px;
 	    text-align: center;
 	}
-	.AddressInput {
-	    display: block;
-	    width: 632px;
-	}
 	.input {
-		padding: 15px;
+		padding: 10px;
 	    border: 1px solid #ccc;
 	    border-radius: 25px;
-	    width: 600px;
+	    width: 100%;
+	    display: block;
 	    outline: none;
+	}
+	@media only screen and (max-width:1024px) {
+		.main {
+			margin-top: 100px; 
+		}
+	}
+	@media only screen and (max-width:768px) {
+		.input {
+			width: 710px; 
+		}
+		.main {
+			margin-top: : 10px; 
+		}
+	}
+	@media only screen and (max-width:600px) {
+		.main {
+			width: 100%;
+			margin-top: 150px;
+			margin-left: 0;
+		    padding-left: 0;
+		}
+		.input {
+			width: 560px;
+		}
+		.logo {
+			width: 588px;
+		}
+		.logoarea {
+		    padding-bottom: 30px;
+		    width: 588px;
+
+		}
+		.form {
+
+		 	width: 588px;
+
+		}
+		h5 {
+			width: 588px;
+		}
 	}
 	input:hover {
 		box-shadow: 0px 0px 12px -5px #585858;
@@ -62,12 +115,11 @@
 	    border: 0;
 	    padding: 10px;
 	    font-size: 14px;
-	    color: #777;
-	    margin-left: auto;
-	    margin-right: auto;
-	    margin-top: 20px;
+	    color: #555;
+	    margin: 30px auto 0px auto;
 	    display: block;
 	    cursor: pointer;
+}
 
 	}
 	.app {

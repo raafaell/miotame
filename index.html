@@ -9,28 +9,30 @@
   <script src="js/app.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Jura:300&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
-<body class="body">
+<body>
 
+<div class="main">
   <div class="logoarea">
-      <p class="logo" id="logo">MIOTΛ.me <img src="img/logo.svg" height="32"></img>
+      <p class="logo" id="logo"><a href="https://miota.me/">MIOT&Lambda;.me<img src="img/logo.svg" height="32"></a>
         <h5>Decentralized IOTA Address Shortener</h5>
       </p>
   </div>
 
-  
-  <div class="AddressInput" id="AddressInput">
-    <form>
+
+  <div>
+    <form class="form">
     <input class="input" type="text" id="UserAddress" placeholder="Please Enter Your Address" pattern=".{90,}"   required title="An Address has 90 trytes"><br />
     <input class="submitbtn" type="button" name="submit" value="Save and get Shorturl" onclick="runApp();">
     </form>
   </div>
 
-  <div class="app" id="app"></div>
+  <div class="url" id="url"></div>
   <div class="error" id="error"></div>
-
+</div>
 
   <script type="text/javascript">
 
