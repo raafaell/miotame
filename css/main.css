@@ -1,6 +1,53 @@
+	.body {
+		width: 100%;
+		padding: 35% 50% 65% 50%;
+		margin-left: -316px;
+
+	}
+
 	.show{
 		display: block;
 	}
 	.hide{
 		display: none;
+	}
+	.logo {
+
+	}
+	.AddressInput {
+	    display: block;
+	    width: 632px;
+	}
+	.input {
+		padding: 15px;
+	    border: 1px solid #ccc;
+	    border-radius: 25px;
+	    width: 600px;
+	    outline: none;
+	}
+	input:hover {
+		box-shadow: 0px 0px 12px -5px #585858;
+	}
+	input:-webkit-autofill {
+		background-color: #FAFFBD !important;
+	}
+	.submitbtn {
+		width: 200px;
+	    background-color: #f2f2f2;
+	    border: 0;
+	    padding: 10px;
+	    font-size: 14px;
+	    color: #777;
+	    margin-left: auto;
+	    margin-right: auto;
+	    margin-top: 20px;
+	    display: block;
+	    cursor: pointer;
+
+	}
+	.app {
+
+	}
+	.error {
+
 	}
