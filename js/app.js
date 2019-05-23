@@ -2,7 +2,7 @@ var iota = core.composeAPI({
   provider: 'https://nodes.thetangle.org:443'
 });
 
-let urltag = window.location.href.slice(17, 26)
+let urltag = window.location.pathname.slice(1, 10)
 if (urltag.length != 9) {
   console.log("No shorturl found")
 }
