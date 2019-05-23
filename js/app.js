@@ -52,11 +52,21 @@ async function getAddressWithTag(tag) {
     })
     if (results.length == 0) {
       console.log("No matching tx found with tag: " + tag)
+      Swal.fire(
+        `No matching tx found with tag:`,
+        tag,
+        'error'
+      )
       return
     }
     let equal = results.every((val, i, arr) => val === arr[0])
     if (equal == true) {
       console.log("Address found: " + results[0]);
+      Swal.fire(
+        `Address found!`,
+        `${results[0]}`,
+        'success'
+      )
     } else {
       console.error("Different addresses found: " + array)
     }
