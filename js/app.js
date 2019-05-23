@@ -2,7 +2,7 @@ var iota = core.composeAPI({
   provider: 'https://nodes.thetangle.org:443'
 });
 
-let urltag = window.location.pathname.slice(9, 18)
+let urltag = window.location.href.slice(17, 26)
 if (urltag.length != 9) {
   console.log("No shorturl found")
 }
@@ -88,7 +88,7 @@ async function runApp() {
       var link = document.createElement('a');
     link.textContent = 'https://miota.me/' + address.slice(81, 90);
     link.href = address.slice(81, 90);
-    document.getElementById('app').appendChild(link);
+    // post in page? document.getElementById('app').appendChild(link);
     await sendTag(address)
     await new Promise(resolve => setTimeout(resolve, 1000))
     await getAddressWithTag(address.slice(81, 90))
