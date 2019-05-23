@@ -10,13 +10,15 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
-<body>
+<body class="body">
 
 
   <div class="logo" id="logo"></div>
   <div class="AddressInput" id="AddressInput">
-    Your Address: <input type="text" name="address" id="UserAddress">
-    <input type="button" name="submit" value="Submit" onclick="runApp();">
+    <form>
+    <input class="input" type="text" id="UserAddress" placeholder="Please Enter Your Address" required><br />
+    <input class="submitbtn" type="submit" name="submit" value="Save and get Shorturl" onclick="runApp();">
+    </form>
   </div>
 
   <div class="app" id="app"></div>
