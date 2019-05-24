@@ -1,139 +1,145 @@
 	h5 {
-		font-family: 'Jura', sans-serif;
-	    font-size: 14px;
-	    color: #333;
-	    width: 732px;
-	    text-align: center;
-	    padding: 0;
-	    display: block;
-	    margin-block-start: 0;
-	    margin-block-end: 0;
-	    margin-inline-start: 0px;
-	    margin-inline-end: 0px;
+	  font-family: 'Jura', sans-serif;
+	  font-size: 14px;
+	  color: #333;
+	  width: 732px;
+	  text-align: center;
+	  padding: 0;
+	  display: block;
+	  margin-block-start: 0;
+	  margin-block-end: 0;
+	  margin-inline-start: 0px;
+	  margin-inline-end: 0px;
 	}
+
 	p {
-		margin-block-start: 0;
-	    margin-block-end: 0;
-	    margin-inline-start: 0px;
-	    margin-inline-end: 0px;
+	  margin-block-start: 0;
+	  margin-block-end: 0;
+	  margin-inline-start: 0px;
+	  margin-inline-end: 0px;
 	}
+
 	a {
-		text-decoration: none;
+	  text-decoration: none;
 	}
+
 	input:hover {
-		box-shadow: 0px 0px 12px -5px #585858;
+	  box-shadow: 0px 0px 12px -5px #585858;
 	}
+
 	input:-webkit-autofill {
-		background-color: #F2F2F2 !important;
+	  background-color: #F2F2F2 !important;
 	}
+
 	.submitbtn {
-		width: 200px;
-	    background-color: #f2f2f2;
-	    border: 0;
-	    padding: 10px;
-	    font-size: 14px;
-	    color: #555;
-	    margin: 30px auto 0px auto;
-	    display: block;
-	    cursor: pointer;
-		}
+	  width: 200px;
+	  background-color: #f2f2f2;
+	  border: 0;
+	  padding: 10px;
+	  font-size: 14px;
+	  color: #555;
+	  margin: 30px auto 0px auto;
+	  display: block;
+	  cursor: pointer;
+	}
 
-		}
-		.app {
-		width: 732px;
-	    font-size: 13.5px;
-	    border: solid 1px #ccc;
-	    border-radius: 10px;
-	    padding: 5px;
+	}
 
+	.app {
+	  width: 732px;
+	  font-size: 13.5px;
+	  border: solid 1px #ccc;
+	  border-radius: 10px;
+	  padding: 5px;
+	}
 
-		}
-		.error {
+	.error {}
 
-		}
-		.QR {
+	.QR {}
 
-		}
 	.form {
-
-	 	width: 732px;
-
+	  width: 732px;
 	}
+
 	.main {
-
-	    display: block;
-	    margin-top: 300px;
-	    margin-left: -366px;
-	    padding-left: 50%;
-	    margin-right: 50%;
-	    width: 100%;
-
-
+	  display: block;
+	  margin-top: 300px;
+	  margin-left: -366px;
+	  padding-left: 50%;
+	  margin-right: 50%;
+	  width: 100%;
 	}
 
-	.show{
-		display: block;
+	.show {
+	  display: block;
 	}
-	.hide{
-		display: none;
+
+	.hide {
+	  display: none;
 	}
+
 	.logoarea {
-	    padding-bottom: 60px;
-	    width: 732px;
-
+	  padding-bottom: 60px;
+	  width: 732px;
 	}
+
 	.logo {
-		font-family: 'Jura', sans-serif;
-	    font-size: 64px;
-	    color: #333;
-	    width: 732px;
-	    text-align: center;
+	  font-family: 'Jura', sans-serif;
+	  font-size: 64px;
+	  color: #333;
+	  width: 732px;
+	  text-align: center;
 	}
+
 	.input {
-		padding: 10px;
-	    border: 1px solid #ccc;
-	    border-radius: 25px;
-	    width: 100%;
-	    display: block;
-	    outline: none;
+	  padding: 10px;
+	  border: 1px solid #ccc;
+	  border-radius: 25px;
+	  width: 100%;
+	  display: block;
+	  outline: none;
 	}
+
+	#qrcode-canvas {
+	  display: none;
+	}
+
 	@media only screen and (max-width:1024px) {
-		.main {
-			margin-top: 100px; 
-		}
+	  .main {
+	    margin-top: 100px;
+	  }
 	}
+
 	@media only screen and (max-width:768px) {
-		.input {
-			width: 710px; 
-		}
-		.main {
-			margin-top: : 10px; 
-		}
+	  .input {
+	    width: 710px;
+	  }
+	  .main {
+	    margin-top: : 10px;
+	  }
 	}
+
 	@media only screen and (max-width:600px) {
-		.main {
-			width: 100%;
-			margin-top: 150px;
-			margin-left: 0;
-		    padding-left: 0;
-		}
-		.input {
-			width: 560px;
-		}
-		.logo {
-			width: 588px;
-		}
-		.logoarea {
-		    padding-bottom: 30px;
-		    width: 588px;
-
-		}
-		.form {
-
-		 	width: 588px;
-
-		}
-		h5 {
-			width: 588px;
-		}
+	  .main {
+	    width: 100%;
+	    margin-top: 150px;
+	    margin-left: 0;
+	    padding-left: 0;
+	  }
+	  .input {
+	    width: 560px;
+	  }
+	  .logo {
+	    width: 588px;
+	  }
+	  .logoarea {
+	    padding-bottom: 30px;
+	    width: 588px;
+	  }
+	  .form {
+	    width: 588px;
+	  }
+	  h5 {
+	    width: 588px;
+	  }
 	}

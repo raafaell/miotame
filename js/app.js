@@ -8,11 +8,11 @@ if (urltag.length != 9) {
 } else
   iota.findTransactionObjects({ tags: [urltag] })
     .then(tags => {
-             console.log(`ADDRESS FOUND: ${tags[0].address}`) 
-             document.getElementById("urldata").innerHTML =tags[0].address;
-         })
-         .catch(err => {
-         });
+      console.log(`ADDRESS FOUND: ${tags[0].address}`)
+      document.getElementById("urldata").innerHTML = tags[0].address;
+    })
+    .catch(err => {
+    });
 
 async function sendTag(address) {
   try {
@@ -72,6 +72,7 @@ async function getAddressWithTag(tag) {
     let equal = results.every((val, i, arr) => val === arr[0])
     if (equal == true) {
       console.log("Address found: " + results[0]);
+      drawQR(results[0])
     } else {
       console.error("Different addresses found: " + array)
       document.getElementById("error").innerHTML = "Different addresses found: " + array;
@@ -90,7 +91,7 @@ async function runApp() {
       document.getElementById("error").innerHTML = "Your address is invalid";
       return
     } else
-    var element = document.getElementById("AddressInput");
+      var element = document.getElementById("AddressInput");
     element.classList.add("hide");
     var link = document.createElement('a');
     link.textContent = 'https://miota.me/' + address.slice(81, 90);
@@ -103,4 +104,22 @@ async function runApp() {
   catch (e) {
     console.log(e)
   }
+}
+
+function drawQR(address) {
+  var canvas = document.getElementById("qrcode-canvas");
+  canvas.style.display = "block";
+
+  var ecl = qrcodegen.QrCode.Ecc.QUARTILE;
+  var segs = qrcodegen.QrSegment.makeSegments(address);
+  var minVer = 1
+  var maxVer = 10
+  var mask = -1
+  var boostEcc = true;
+  var qr = qrcodegen.QrCode.encodeSegments(segs, ecl, minVer, maxVer, mask, boostEcc);
+
+  //draw qr code
+  var border = 1;
+  var scale = 4
+  qr.drawCanvas(scale, border, canvas);
 }
