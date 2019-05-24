@@ -5,14 +5,9 @@ var iota = core.composeAPI({
 let urltag = window.location.pathname.slice(1, 10)
 if (urltag.length != 9) {
   console.log("No shorturl found, proceed...")
-} else
-  iota.findTransactionObjects({ tags: [urltag] })
-    .then(tags => {
-      console.log(`ADDRESS FOUND: ${tags[0].address}`)
-      document.getElementById("urldata").innerHTML = tags[0].address;
-    })
-    .catch(err => {
-    });
+} else {
+  getAddressWithTag(urltag)
+}
 
 async function sendTag(address) {
   try {
@@ -33,11 +28,12 @@ async function sendTag(address) {
       address: address,
       value: 0,
       tag: tag,
+      message: WCHDHDDDGDDBTATAADXCCDHDPCSAADTCTA
     }]
 
     let trytes = await iota.prepareTransfers((seed = '9'.repeat(81)), transfers)
     let bundle = await iota.sendTrytes(trytes, (depth = 3), (minWeightMagnitude = 14))
-    console.log(`Transaction: ${bundle[0].hash}`)
+    console.log(`Transaction sent: https://thetangle.org/transaction/${bundle[0].hash}`)
   }
   catch (err) {
     console.log(err)
@@ -72,6 +68,7 @@ async function getAddressWithTag(tag) {
     let equal = results.every((val, i, arr) => val === arr[0])
     if (equal == true) {
       console.log("Address found: " + results[0]);
+      document.getElementById("urldata").innerHTML = tags[0].address;
       drawQR(results[0])
       let deeplink = document.getElementById("deeplink")
       deeplink.href = "iota://" + results[0];
@@ -120,8 +117,6 @@ function drawQR(address) {
   var mask = -1
   var boostEcc = true;
   var qr = qrcodegen.QrCode.encodeSegments(segs, ecl, minVer, maxVer, mask, boostEcc);
-
-  //draw qr code
   var border = 1;
   var scale = 4
   qr.drawCanvas(scale, border, canvas);
