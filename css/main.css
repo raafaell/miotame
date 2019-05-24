@@ -1,7 +1,7 @@
 	h5 {
 	  font-family: 'Jura', sans-serif;
 	  font-size: 14px;
-	  color: #333; */
+	  color: #333;
 	  text-align: center;
 	  display: block;
 	  margin-block-start: 0;
@@ -20,6 +20,7 @@
 	a {
 	  text-decoration: none;
 	}
+
 	input {
 	  font-size: 11px;
 	  padding: 10px 0px 10px 10px;
@@ -31,14 +32,18 @@
 	  margin-left: auto;
 	  margin-right: auto;
 	  outline: none;
-	  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	  box-sizing: border-box;         /* Opera/IE 8+ */
+	  -webkit-box-sizing: border-box;
+	  /* Safari/Chrome, other WebKit */
+	  -moz-box-sizing: border-box;
+	  /* Firefox, other Gecko */
+	  box-sizing: border-box;
+	  /* Opera/IE 8+ */
 	  /* float: left; */
 	  /* -webkit-appearance: textfield; */
 	  /* background-color: white; */
 	  /* -webkit-rtl-ordering: logical; */
 	}
+
 	input:hover {
 	  box-shadow: 0px 0px 12px -5px #585858;
 	}
@@ -72,13 +77,13 @@
 	.QR {}
 
 	.form {
-	/* max-width: 700px; */
+	  /* max-width: 700px; */
 	}
 
 	.main {
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 700px;
+	  margin-left: auto;
+	  margin-right: auto;
+	  max-width: 700px;
 	}
 
 	.show {
@@ -104,7 +109,6 @@
 	  margin-right: auto;
 	  display: block;
 	}
-
 
 	#qrcode-canvas {
 	  display: none;
