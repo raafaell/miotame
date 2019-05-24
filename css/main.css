@@ -57,20 +57,33 @@
 	  cursor: pointer;
 	}
 
-	.app {
-	  font-size: 13.5px;
-	  /* border: solid 1px #ccc; */
-	  /* border-radius: 3px; */
-	  padding: 5px;
-	  margin-top: 40px;
+	.information {
+	  width: 100%;
+	  height: 400px;
+	  -ms-display: flexbox;
+	  display: flex;
+	  margin: 0px 0px 0px 240px;
 	}
 
-	.error {}
+	.information > span {
+	  -ms-flex: 1;
+	  flex: 1;
+	  height: 100%;
+	}
 
-	.QR {}
+	#qrcode-canvas {
+	  display: none;
+	}
 
-	.form {
-	/* max-width: 700px; */
+	#deeplink {
+	  display: none;
+	}
+
+	#address {
+
+	}
+	#qr {
+		
 	}
 
 	.main {
@@ -100,15 +113,6 @@
 	  margin-left: auto;
 	  margin-right: auto;
 	  display: block;
-	}
-
-
-	#qrcode-canvas {
-	  display: none;
-	}
-
-	#deeplink {
-	  display: none;
 	}
 	@media only screen and (max-width: 728px) {
 	  .main {
