@@ -4,20 +4,29 @@ var iota = core.composeAPI({
 
 let urltag = window.location.pathname.slice(1, 10)
 if (urltag.length != 9) {
-  console.log("No shorturl found")
-}
+  console.log("No shorturl found, proceed...")
+} else
+  iota.findTransactionObjects({ tags: [urltag] })
+    .then(tags => {
+             console.log(`ADDRESS FOUND: ${tags[0].address}`) 
+             document.getElementById("urldata").innerHTML =tags[0].address;
+         })
+         .catch(err => {
+         });
 
 async function sendTag(address) {
   try {
     var address = address
     if (address.length != 90) {
-      console.log("Invalid address length");
+      console.log("Invalid address length")
+      document.getElementById("error").innerHTML = "Your address is not invalid";
       return
     }
     var tag = address.slice(81, 90)
     console.log("Tag: " + tag);
     if (address.slice(81, 90) != checksum.addChecksum(address.slice(0, 81)).slice(81, 90)) {
       console.log("Invalid checksum");
+      document.getElementById("error").innerHTML = "The checksum does not match";
       return
     }
     var transfers = [{
@@ -28,7 +37,7 @@ async function sendTag(address) {
 
     let trytes = await iota.prepareTransfers((seed = '9'.repeat(81)), transfers)
     let bundle = await iota.sendTrytes(trytes, (depth = 3), (minWeightMagnitude = 14))
-    console.log(`TRANSACTION: ${bundle[0].hash}`)
+    console.log(`Transaction: ${bundle[0].hash}`)
   }
   catch (err) {
     console.log(err)
@@ -39,6 +48,7 @@ async function getAddressWithTag(tag) {
   try {
     if (!tag.match(/^[A-Z9]{9}$/)) {
       console.error("Invalid tag")
+      document.getElementById("error").innerHTML = "This shorturl is not valid";
       return
     }
     let hashesWithTag = await iota.findTransactions({ tags: [tag] })
@@ -62,13 +72,9 @@ async function getAddressWithTag(tag) {
     let equal = results.every((val, i, arr) => val === arr[0])
     if (equal == true) {
       console.log("Address found: " + results[0]);
-      Swal.fire(
-        `Address found!`,
-        `${results[0]}`,
-        'success'
-      )
     } else {
       console.error("Different addresses found: " + array)
+      document.getElementById("error").innerHTML = "Different addresses found: " + array;
     }
   }
   catch (err) {
@@ -80,20 +86,21 @@ async function getAddressWithTag(tag) {
 async function runApp() {
   try {
     let address = document.getElementById("UserAddress").value;
-    console.log("tag: " + address.slice(81, 90))
     if (address.slice(81, 90) != checksum.addChecksum(address.slice(0, 81)).slice(81, 90)) {
-      document.getElementById("app").innerHTML = "Your address is invalid";
+      document.getElementById("error").innerHTML = "Your address is invalid";
       return
     } else
-      var link = document.createElement('a');
+    var element = document.getElementById("AddressInput");
+    element.classList.add("hide");
+    var link = document.createElement('a');
     link.textContent = 'https://miota.me/' + address.slice(81, 90);
     link.href = address.slice(81, 90);
-    // post in page? document.getElementById('app').appendChild(link);
+    document.getElementById('urldata').appendChild(link);
     await sendTag(address)
     await new Promise(resolve => setTimeout(resolve, 1000))
     await getAddressWithTag(address.slice(81, 90))
   }
   catch (e) {
-    console.error(e)
+    console.log(e)
   }
 }
