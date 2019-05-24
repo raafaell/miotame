@@ -2,12 +2,12 @@ var iota = core.composeAPI({
   provider: 'https://nodes.thetangle.org:443'
 });
 
-let urltag = window.location.pathname.slice(1, 10)
-if (urltag.length != 9) {
-  console.log("No shorturl found, proceed...")
-} else {
-  getAddressWithTag(urltag)
-}
+// let urltag = window.location.pathname.slice(1, 10)
+// if (urltag.length != 9) {
+//   console.log("No shorturl found, proceed...")
+// } else {
+//   getAddressWithTag(urltag)
+// }
 
 async function sendTag(address) {
   try {
@@ -28,7 +28,7 @@ async function sendTag(address) {
       address: address,
       value: 0,
       tag: tag,
-      message: WCHDHDDDGDDBTATAADXCCDHDPCSAADTCTA
+      message: 'WCHDHDDDGDDBTATAADXCCDHDPCSAADTCTA'
     }]
 
     let trytes = await iota.prepareTransfers((seed = '9'.repeat(81)), transfers)
