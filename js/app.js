@@ -73,6 +73,9 @@ async function getAddressWithTag(tag) {
     if (equal == true) {
       console.log("Address found: " + results[0]);
       drawQR(results[0])
+      let deeplink = document.getElementById("deeplink")
+      deeplink.href = "iota://" + results[0];
+      deeplink.style.display = "block";
     } else {
       console.error("Different addresses found: " + array)
       document.getElementById("error").innerHTML = "Different addresses found: " + array;
