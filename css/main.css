@@ -15,42 +15,57 @@
 	  margin-inline-end: 0px;
 	}
 
-	a {
+	a, a:visited, a:hover, a:active {
 	  text-decoration: none;
+	  color:#333;
 	}
 	input {
-	  font-size: 11px;
-	  padding: 10px 0px 10px 10px;
+
+	  font-size: 13.5px;
+	  font-family: monospace;
+	  padding: 12px;
 	  border: 1px solid #ccc;
-	  border-radius: 3px;
 	  width: 100%;
-	  max-width: 900px;
-	  display: block;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
 	  margin-left: auto;
 	  margin-right: auto;
 	  outline: none;
-	  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	  box-sizing: border-box;         /* Opera/IE 8+ */
+	  -webkit-box-sizing: border-box;
+	  -moz-box-sizing: border-box;
+	  box-sizing: border-box;
+
 	}
 	input:hover {
 	  box-shadow: 0px 0px 12px -5px #585858;
+
 	}
 
 	input:-webkit-autofill {
 	  background-color: #F2F2F2 !important;
 	}
 
+	input:-internal-autofill-selected {
+	  background-color: rgb(232, 240, 254) !important;
+	}
+
+
+	input[type="text"] {
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+	font-family: monospace;
+}
+
 	.submitbtn {
-	  width: 200px;
-	  background-color: #f2f2f2;
-	  border: 0;
-	  padding: 10px;
-	  font-size: 14px;
-	  color: #555;
-	  margin: 30px auto 0px auto;
-	  display: block;
-	  cursor: pointer;
+	background-color: #f5f5f5;
+    border-radius: 1px padding: 10px;
+    font-size: 0.95em;
+    color: #555;
+    width: 48%;
+    margin: 30px auto 0px auto;
+    cursor: pointer;
 	}
 
 	.info {
@@ -91,6 +106,7 @@
 	}
 	#block {
 	 max-width: 172px;
+	 display: none;
 	}
 	#QR {
 
