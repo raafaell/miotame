@@ -137,6 +137,8 @@ function error(errorMessage) {
     }).then((r) => {
       if (urltag.length == 9) {
         getAddressWithChecksum(urltag)
+      } else {
+        tryNode(0)
       }
     })
   } else {
