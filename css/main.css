@@ -60,6 +60,42 @@
     font-family: monospace;
   }
 
+  textarea {
+    -webkit-transition: all 0.7s ease 0s;
+    -moz-transition: all 0.7s ease 0s;
+    -o-transition: all 0.7s ease 0s;
+    transition: all 0.7s ease 0s;
+    font-size: 13.5px;
+    font-family: monospace;
+    padding: 12px;
+    border: 1px solid #ccc;
+    width: 100%;
+    text-overflow: ellipsis;
+    margin-left: auto;
+    margin-right: auto;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    box-sizing: padding-box;
+    overflow: hidden;
+    word-break: break-word;
+    max-height: 70px;
+    resize: none;
+  }
+
+  textarea:hover {
+    box-shadow: 0px 0px 12px -5px #585858;
+  }
+
+  textarea:-webkit-autofill {
+    background-color: #F2F2F2 !important;
+  }
+
+  textarea:-internal-autofill-selected {
+    background-color: rgb(232, 240, 254) !important;
+  }
+
   .submitbtn {
     background-color: #f5f5f5;
     border-radius: 1px padding: 10px;
