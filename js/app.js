@@ -64,7 +64,7 @@ async function sendTransaction() {
     document.getElementById('urldata').removeChild(sendinfo);
     document.getElementById('urldata').appendChild(link);
     //animate url revelation
-    var s = ["█", "▓", "▒", "░", "█", "▓", "▒", "░", "█", "▓", "▒", "░", "<", ">", "/"];
+    var s = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "9"];
     baffle(".baffle", { characters: s })
       .start()
       .reveal(200, 800)
