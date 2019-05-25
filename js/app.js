@@ -135,7 +135,9 @@ function error(errorMessage) {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Retry'
     }).then((r) => {
-      getAddressWithChecksum('CZHQBAY9X')
+      if (urltag.length == 9) {
+        getAddressWithChecksum(urltag)
+      }
     })
   } else {
     Swal.fire(
