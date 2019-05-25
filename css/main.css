@@ -32,10 +32,6 @@
 	  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	  box-sizing: border-box;         /* Opera/IE 8+ */
-	  /* float: left; */
-	  /* -webkit-appearance: textfield; */
-	  /* background-color: white; */
-	  /* -webkit-rtl-ordering: logical; */
 	}
 	input:hover {
 	  box-shadow: 0px 0px 12px -5px #585858;
@@ -57,18 +53,20 @@
 	  cursor: pointer;
 	}
 
-	.information {
+	.info {
 	  width: 100%;
 	  height: 400px;
 	  -ms-display: flexbox;
 	  display: flex;
-	  margin: 0px 0px 0px 240px;
+	  flex-wrap: wrap;
+	  padding-top: 50px;
 	}
 
-	.information > span {
-	  -ms-flex: 1;
-	  flex: 1;
-	  height: 100%;
+	.info > span {
+	width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    padding-top: 20px;
 	}
 
 	#qrcode-canvas {
@@ -76,14 +74,36 @@
 	}
 
 	#deeplink {
-	  display: none;
+	 display: none;
 	}
+	.deeplink {
 
-	#address {
+	 display: block;
+     font-family: monospace;
+     max-width: 172px;
+     min-width: 172px;
+     word-break: break-word;
+     font-size: 14px;
+     text-align: justify;
+     letter-spacing: 8px;
+     margin-right: auto;
 
 	}
-	#qr {
-		
+	#block {
+	 max-width: 172px;
+	}
+	#QR {
+
+     width: auto;
+     margin-right: auto;
+
+	}
+	.urldata {
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
 	}
 
 	.main {
@@ -98,6 +118,9 @@
 	}
 
 	.hide {
+	  display: none;
+	}
+	.formhide {
 	  display: none;
 	}
 

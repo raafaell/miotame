@@ -1,6 +1,22 @@
+var nodelist = ['https://nodes.thetangle.org:443', 'https://node02.iotatoken.nl:443', 'https://nutzdoch.einfachiota.de', 'https://wallet2.iota.town:443', 'https://iotanode.us:443']
 var iota = core.composeAPI({
   provider: 'https://nodes.thetangle.org:443'
-});
+})
+tryNode(0)
+async function tryNode(pos) {
+  try {
+    iota = core.composeAPI({
+      provider: nodelist[pos]
+    })
+    await iota.getNodeInfo()
+    return
+  } catch (e) {
+    pos++
+    if (pos < nodelist.length) {
+      tryNode(pos)
+    }
+  }
+}
 
 let urltag = window.location.pathname.slice(1, 10)
 if (urltag.length != 9) {
@@ -34,22 +50,22 @@ async function sendTransaction() {
 
     //update website elements
     let element = document.getElementsByClassName("form");
-    element[0].className += ' hide'
+    element[0].className += 'hide'
     let link = document.createElement('a');
     link.textContent = 'https://miota.me/' + address.slice(81, 90);
     link.href = 'https://miota.me/' + address.slice(81, 90);
     link.rel = "noopener noreferrer"
+    link.className = "urldata"
     document.getElementById('urldata').appendChild(link);
   }
   catch (err) {
     console.log(err)
-    error(err)
+    error(err.message)
   }
 }
 
 async function getAddressWithChecksum(tag) {
   try {
-    var tag = 'CZHQBAY9X'
     await new Promise(resolve => setTimeout(resolve, 1))
     if (!tag.match(/^[A-Z9]{9}$/)) {
       return error('Invalid tag')
@@ -76,17 +92,19 @@ async function getAddressWithChecksum(tag) {
 
       let deeplink = document.getElementById("deeplink")
       let link = document.createElement('a');
-      link.innerHTML = 'Trinity deep link iota://'.fontcolor("DarkSlateGray") + results[0].slice(0, 81).fontcolor("DarkSlateGray") + results[0].slice(81, 90).fontcolor("DeepSkyBlue").bold().big()
+      link.innerHTML = ''.fontcolor("DarkSlateGray") + results[0].slice(0, 81).fontcolor("DarkSlateGray") + results[0].slice(81, 90).fontcolor("DeepSkyBlue").bold()
       link.href = "iota://" + results[0];
       link.rel = "noopener noreferrer"
-      link.target = "_blank"
+      link.target = "_self"
       deeplink.appendChild(link);
       deeplink.style.display = "block";
+      deeplink.className = "deeplink"
     }
   }
   catch (err) {
     console.log(err)
-    error(err)
+    error(err.message)
+
   }
 }
 
@@ -101,15 +119,32 @@ function drawQR(address) {
   var mask = -1
   var boostEcc = true;
   var qr = qrcodegen.QrCode.encodeSegments(segs, ecl, minVer, maxVer, mask, boostEcc);
-  var border = 1;
+  var border = 0;
   var scale = 4
   qr.drawCanvas(scale, border, canvas);
 }
 
 function error(errorMessage) {
-  Swal.fire(
-    errorMessage,
-    '',
-    'error'
-  )
+  if (errorMessage == 'Failed to fetch') {
+    Swal.fire({
+      title: errorMessage,
+      text: "Retry?",
+      type: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Retry'
+    }).then((r) => {
+      if (urltag.length == 9) {
+        getAddressWithChecksum(urltag)
+      } else {
+        tryNode(0)
+      }
+    })
+  } else {
+    Swal.fire(
+      errorMessage,
+      '',
+      'error'
+    )
+  }
 }
