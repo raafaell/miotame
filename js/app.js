@@ -123,8 +123,6 @@ function drawQR(address) {
 }
 
 function error(errorMessage) {
-  console.log("errorMessage");
-  console.log(errorMessage);
   if (errorMessage == 'Failed to fetch') {
     Swal.fire({
       title: errorMessage,
@@ -132,7 +130,6 @@ function error(errorMessage) {
       type: 'warning',
       showCancelButton: false,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: 'Retry'
     }).then((r) => {
       if (urltag.length == 9) {
