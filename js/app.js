@@ -187,20 +187,6 @@ $(document)
 
 //copy URL
 function copyURL() {
-  // var copyText = document.getElementById("UserAddress");
-  var copyText = document.getElementsByClassName("baffle")[0];
-  console.log(copyText);
-  // copyText.value = 'https://miota.me/' + copyText.value.slice(81, 90)
-  copyText.select();
-  document.execCommand("copy");
-  Swal.fire(
-    'URL copied:',
-    copyText.value,
-    'success'
-  )
-}
-
-function copyURL() {
   let element = ".baffle"
   var $temp = $("<input>");
   $("body").append($temp);
