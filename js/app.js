@@ -1,6 +1,22 @@
+var nodelist = ['https://nodes.thetangle.org:443', 'https://node02.iotatoken.nl:443', 'https://nutzdoch.einfachiota.de', 'https://wallet2.iota.town:443', 'https://iotanode.us:443']
 var iota = core.composeAPI({
   provider: 'https://nodes.thetangle.org:443'
-});
+})
+tryNode(0)
+async function tryNode(pos) {
+  try {
+    iota = core.composeAPI({
+      provider: nodelist[pos]
+    })
+    await iota.getNodeInfo()
+    return
+  } catch (e) {
+    pos++
+    if (pos < nodelist.length) {
+      tryNode(pos)
+    }
+  }
+}
 
 let urltag = window.location.pathname.slice(1, 10)
 if (urltag.length != 9) {
@@ -43,13 +59,12 @@ async function sendTransaction() {
   }
   catch (err) {
     console.log(err)
-    error(err)
+    error(err.message)
   }
 }
 
 async function getAddressWithChecksum(tag) {
   try {
-    var tag = 'CZHQBAY9X'
     await new Promise(resolve => setTimeout(resolve, 1))
     if (!tag.match(/^[A-Z9]{9}$/)) {
       return error('Invalid tag')
@@ -86,7 +101,8 @@ async function getAddressWithChecksum(tag) {
   }
   catch (err) {
     console.log(err)
-    error(err)
+    error(err.message)
+
   }
 }
 
@@ -107,9 +123,25 @@ function drawQR(address) {
 }
 
 function error(errorMessage) {
-  Swal.fire(
-    errorMessage,
-    '',
-    'error'
-  )
+  console.log("errorMessage");
+  console.log(errorMessage);
+  if (errorMessage == 'Failed to fetch') {
+    Swal.fire({
+      title: errorMessage,
+      text: "Retry?",
+      type: 'warning',
+      showCancelButton: false,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Retry'
+    }).then((r) => {
+      getAddressWithChecksum('CZHQBAY9X')
+    })
+  } else {
+    Swal.fire(
+      errorMessage,
+      '',
+      'error'
+    )
+  }
 }
