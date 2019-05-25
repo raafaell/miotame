@@ -33,11 +33,12 @@ async function sendTransaction() {
     console.log(`Transaction with sent: https://thetangle.org/transaction/${bundle[0].hash}`)
 
     //update website elements
-    let element = document.getElementById("AddressInput");
-    element.classList.add("hide");
+    let element = document.getElementsByClassName("form");
+    element[0].className += ' hide'
     let link = document.createElement('a');
     link.textContent = 'https://miota.me/' + address.slice(81, 90);
     link.href = 'https://miota.me/' + address.slice(81, 90);
+    link.rel = "noopener noreferrer"
     document.getElementById('urldata').appendChild(link);
   }
   catch (err) {
@@ -48,6 +49,7 @@ async function sendTransaction() {
 
 async function getAddressWithChecksum(tag) {
   try {
+    var tag = 'CZHQBAY9X'
     await new Promise(resolve => setTimeout(resolve, 1))
     if (!tag.match(/^[A-Z9]{9}$/)) {
       return error('Invalid tag')
@@ -71,8 +73,14 @@ async function getAddressWithChecksum(tag) {
     } else if (results.length == 1) {
       console.log('Address found: ' + results[0]);
       drawQR(results[0])
+
       let deeplink = document.getElementById("deeplink")
-      deeplink.href = "iota://" + results[0];
+      let link = document.createElement('a');
+      link.innerHTML = 'Trinity deep link iota://'.fontcolor("DarkSlateGray") + results[0].slice(0, 81).fontcolor("DarkSlateGray") + results[0].slice(81, 90).fontcolor("DeepSkyBlue").bold().big()
+      link.href = "iota://" + results[0];
+      link.rel = "noopener noreferrer"
+      link.target = "_blank"
+      deeplink.appendChild(link);
       deeplink.style.display = "block";
     }
   }
