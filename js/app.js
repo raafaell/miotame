@@ -43,6 +43,7 @@ async function sendTransaction() {
     let sendinfo = document.createElement('span')
     sendinfo.innerHTML = ('Sending transaction...')
     sendinfo.className = "urldata"
+    document.getElementById('urldata').style.display = "block";
     document.getElementById('urldata').appendChild(sendinfo)
     //send transaction with checksum as tag
     let transfers = [{
@@ -69,6 +70,7 @@ async function sendTransaction() {
       .start()
       .reveal(200, 800)
       .text(() => link.textContent)
+    document.getElementById('copybtn').style.display = "block";
   }
   catch (err) {
     console.log(err)
@@ -82,6 +84,9 @@ async function getAddressWithChecksum(tag) {
     if (!tag.match(/^[A-Z9]{9}$/)) {
       return error('Invalid tag')
     }
+    //hide input field and button
+    document.getElementById('AddressInput').style.display = "none";
+
     let hashesWithTag = await iota.findTransactions({ tags: [tag] })
     let txObjects = await iota.getTransactionObjects(hashesWithTag)
     let matchingAdresses = []
@@ -100,14 +105,21 @@ async function getAddressWithChecksum(tag) {
       return error('Different addresses found, ask for a new one!')
     } else if (results.length == 1) {
       console.log('Address found: ' + results[0])
+
       drawQR(results[0])
 
       let deeplink = document.getElementById("deeplink")
       let link = document.createElement('a');
-      link.innerHTML = ''.fontcolor("DarkSlateGray") + results[0].slice(0, 81).fontcolor("DarkSlateGray") + results[0].slice(81, 90).fontcolor("DeepSkyBlue").bold()
+      link.innerHTML = results[0].slice(0, 81).fontcolor("DarkSlateGray") + results[0].slice(81, 90).fontcolor("DeepSkyBlue").bold()
       link.href = "iota://" + results[0];
       link.rel = "noopener noreferrer"
       link.target = "_self"
+
+      let deeplinktitle = document.createElement('span');
+      deeplinktitle.className = "deeplinktitle"
+      deeplinktitle.innerHTML = "Trinity deep link</br>"
+      link.prepend(deeplinktitle)
+
       deeplink.appendChild(link);
       deeplink.style.display = "block";
       deeplink.className = "deeplink"
@@ -116,7 +128,6 @@ async function getAddressWithChecksum(tag) {
   catch (err) {
     console.log(err)
     error(err.message)
-
   }
 }
 
@@ -173,3 +184,33 @@ $(document)
     rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 13.5);
     this.rows = minRows + rows - 1;
   });
+
+//copy URL
+function copyURL() {
+  // var copyText = document.getElementById("UserAddress");
+  var copyText = document.getElementsByClassName("baffle")[0];
+  console.log(copyText);
+  // copyText.value = 'https://miota.me/' + copyText.value.slice(81, 90)
+  copyText.select();
+  document.execCommand("copy");
+  Swal.fire(
+    'URL copied:',
+    copyText.value,
+    'success'
+  )
+}
+
+function copyURL() {
+  let element = ".baffle"
+  var $temp = $("<input>");
+  $("body").append($temp);
+  console.log()
+  $temp.val($(element).attr('href')).select();
+  document.execCommand("copy");
+  Swal.fire(
+    'URL copied:',
+    $(element).attr('href'),
+    'success'
+  )
+  $temp.remove();
+}

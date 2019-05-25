@@ -95,11 +95,15 @@
 
   .submitbtn {
     background-color: #f5f5f5;
-    border-radius: 1px padding: 10px;
+    border-radius: 1px padding;
     color: #555;
     width: 48%;
     margin: 30px auto 0px auto;
     cursor: pointer;
+  }
+
+  #copybtn {
+    display: none;
   }
 
   .info {
@@ -108,7 +112,6 @@
     -ms-display: flexbox;
     display: flex;
     flex-wrap: wrap;
-    padding-top: 50px;
   }
 
   .info>span {
@@ -140,6 +143,12 @@
     letter-spacing: 8px;
     margin-right: auto;
     margin-left: auto;
+    margin-top: -4px;
+  }
+
+  .deeplinktitle {
+    font-family: 'Jura', sans-serif;
+    letter-spacing: 0px;
   }
 
   #blockright {
@@ -150,6 +159,10 @@
   #QR {
     width: auto;
     margin-right: auto;
+  }
+
+  #urldata {
+    display: none;
   }
 
   .urldata {
