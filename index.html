@@ -16,11 +16,11 @@
 
 </head>
 
-<body style="overflow: hidden;">
+<body>
 
   <div class="main">
     <div class="logoarea">
-      <p class="logo" id="logo"><a href="https://miota.me/">MIOT&Lambda;.me <img src="img/logo.svg" height="48"></a>
+      <p class="logo" id="logo"><a href="https://miota.me/">MIOT&Lambda;.me</a>
         <h5>Decentralized IOTA Address Shortener</h5>
       </p>
     </div>
@@ -28,8 +28,7 @@
 
     <div class="AddressInput" id="AddressInput">
       <form class="form">
-        <textarea class="input autoExpand" rows='1' type="text" id="UserAddress"
-          placeholder="Please Enter Your Address"></textarea>
+        <textarea class="input autoExpand" rows='1' type="text" id="UserAddress" placeholder="Please Enter Your Address" maxlength="90"></textarea>
         <input class="submitbtn" type="button" name="submit" value="Shorten Address" onclick="sendTransaction()">
       </form>
     </div>
@@ -37,11 +36,11 @@
     <span class="urldata" id="urldata"></span>
 
     <div class="info">
+      <span class="deeplink" id="deeplink"></span>
       <span class="QR" id="QR">
         <canvas id="qrcode-canvas"></canvas>
       </span>
-      <span class="deeplink" id="deeplink"></span>
-      <span id="block">Some content here.</span>
+      <span id="blockright">Some content here.</span>
     </div>
 
   </div>

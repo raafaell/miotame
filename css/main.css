@@ -70,18 +70,15 @@
     padding: 12px;
     border: 1px solid #ccc;
     width: 100%;
-    text-overflow: ellipsis;
-    margin-left: auto;
-    margin-right: auto;
-    outline: none;
+    outline-color: #7be483;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     box-sizing: padding-box;
-    overflow: hidden;
     word-break: break-word;
     max-height: 70px;
     resize: none;
+    overflow: hidden;
   }
 
   textarea:hover {
@@ -116,9 +113,12 @@
 
   .info>span {
     width: 100%;
+    padding: 30px;
     height: auto;
     flex-wrap: wrap;
     padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #qrcode-canvas {
@@ -136,12 +136,13 @@
     min-width: 172px;
     word-break: break-word;
     font-size: 14px;
-    text-align: justify;
+    text-align: center;
     letter-spacing: 8px;
     margin-right: auto;
+    margin-left: auto;
   }
 
-  #block {
+  #blockright {
     max-width: 172px;
     display: none;
   }
@@ -154,7 +155,6 @@
   .urldata {
     font-size: 16px;
     display: block;
-    width: 100%;
     text-align: center;
     padding: 10px;
   }
