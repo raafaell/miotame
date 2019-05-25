@@ -3,8 +3,9 @@
 
 <head>
   <title>IOTA Address Shortener</title>
-
+  <meta charset="utf-8" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
   <script src="js/iotajslib.min.js" type="text/javascript"></script>
   <script src="js/qrcodegen.js"></script>
   <script src="js/app.js" type="text/javascript"></script>
@@ -31,14 +32,14 @@
       </form>
     </div>
 
-            <span class="urldata" id="urldata"></span>
+    <span class="urldata" id="urldata"></span>
 
-      <div class="info">
-        <span class="QR" id="QR">
-          <canvas id="qrcode-canvas"></canvas>
-       </span>
-        <span class="deeplink" id="deeplink"></span>
-        <span id="block">Some content here.</span>
+    <div class="info">
+      <span class="QR" id="QR">
+        <canvas id="qrcode-canvas"></canvas>
+      </span>
+      <span class="deeplink" id="deeplink"></span>
+      <span id="block">Some content here.</span>
     </div>
 
   </div>

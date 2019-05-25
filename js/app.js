@@ -27,7 +27,7 @@ if (urltag.length != 9) {
 
 async function sendTransaction() {
   try {
-    let address = document.getElementById("UserAddress").value;
+    let address = document.getElementById("UserAddress").value
     //remove spaces
     address = address.replace(/\s/g, '')
     if (address.length != 90) {
@@ -37,6 +37,13 @@ async function sendTransaction() {
     if (address.slice(81, 90) != addressChecksum) {
       return error('Invalid checksum')
     }
+    //update website elements
+    let sendElement = document.getElementsByClassName("form")
+    sendElement[0].className += 'hide'
+    let sendinfo = document.createElement('span')
+    sendinfo.innerHTML = ('Sending transaction...')
+    sendinfo.className = "urldata"
+    document.getElementById('urldata').appendChild(sendinfo)
     //send transaction with checksum as tag
     let transfers = [{
       address: address,
@@ -46,17 +53,22 @@ async function sendTransaction() {
     }]
     let trytes = await iota.prepareTransfers((seed = '9'.repeat(81)), transfers)
     let bundle = await iota.sendTrytes(trytes, (depth = 3), (minWeightMagnitude = 14))
-    console.log(`Transaction with sent: https://thetangle.org/transaction/${bundle[0].hash}`)
+    console.log(`Transaction sent: https://thetangle.org/transaction/${bundle[0].hash}`)
 
     //update website elements
-    let element = document.getElementsByClassName("form");
-    element[0].className += 'hide'
     let link = document.createElement('a');
     link.textContent = 'https://miota.me/' + address.slice(81, 90);
     link.href = 'https://miota.me/' + address.slice(81, 90);
     link.rel = "noopener noreferrer"
-    link.className = "urldata"
+    link.className = "urldata baffle"
+    document.getElementById('urldata').removeChild(sendinfo);
     document.getElementById('urldata').appendChild(link);
+    //animate url revelation
+    var s = ["█", "▓", "▒", "░", "█", "▓", "▒", "░", "█", "▓", "▒", "░", "<", ">", "/"];
+    baffle(".baffle", { characters: s })
+      .start()
+      .reveal(200, 800)
+      .text(() => link.textContent)
   }
   catch (err) {
     console.log(err)
@@ -87,7 +99,7 @@ async function getAddressWithChecksum(tag) {
       console.error('Different addresses found: ' + array)
       return error('Different addresses found, ask for a new one!')
     } else if (results.length == 1) {
-      console.log('Address found: ' + results[0]);
+      console.log('Address found: ' + results[0])
       drawQR(results[0])
 
       let deeplink = document.getElementById("deeplink")
