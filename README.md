@@ -10,7 +10,7 @@ This tool uses the Tangle to retrieve data from an address and its tag. When a u
 1. Add animated transition between the form and the addresses information page.
 2. Add Trinity deep link. (DONE)
 3. Add QR code generator. (DONE)
-4. Add footer and heater.
+4. Add footer and header.
 5. Add function to retrieve addresses (received) status and alert the sender tx was sent.
 ```
 
