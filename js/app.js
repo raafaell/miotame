@@ -18,12 +18,15 @@ async function tryNode(pos) {
   }
 }
 
-// let urltag = window.location.pathname.slice(1, 10)
-// if (urltag.length != 9) {
-//   console.log('No shorturl found, proceed...')
-// } else {
-//   getAddressWithChecksum(urltag)
-// }
+if (window.location.href == 'https://miota.me/') {
+  let urltag = window.location.pathname.slice(1, window.location.pathname.length)
+  if (urltag.match(/^[A-Z9]{6,27}$/)) {
+    getAddressWithTag(urltag)
+  } else {
+    console.log('No shorturl found, proceed...')
+  }
+}
+
 
 async function sendTransaction() {
   try {
@@ -78,19 +81,21 @@ async function sendTransaction() {
   }
 }
 
-async function getAddressWithTag() {
+async function getAddressWithTag(tag) {
   try {
-    let tag = document.getElementById('UserTag').value
     if (tag.slice(0, 17) == 'https://miota.me/') {
       tag = tag.slice(17, tag.length)
     }
-    console.log(tag);
     await new Promise(resolve => setTimeout(resolve, 1))
     if (!tag.match(/^[A-Z9]{6,27}$/)) {
       return error('Invalid tag')
     }
     //hide input field and button
     document.getElementById('AddressInput').style.display = "none";
+    document.getElementById('TagInput').style.display = "none";
+    document.getElementById('urldata').style.display = "block";
+    document.getElementById('urldata').innerHTML = "Search transaction...";
+
 
     let hashesWithTag = await iota.findTransactions({ tags: [tag] })
     let txObjects = await iota.getTransactionObjects(hashesWithTag)
@@ -110,7 +115,7 @@ async function getAddressWithTag() {
       return error('Different addresses found, ask for a new one!')
     } else if (results.length == 1) {
       console.log('Address found: ' + results[0])
-
+      document.getElementById('urldata').style.display = "none";
       drawQR(results[0])
 
       let deeplink = document.getElementById("deeplink")
