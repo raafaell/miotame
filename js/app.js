@@ -18,7 +18,7 @@ async function tryNode(pos) {
   }
 }
 
-if (window.location.href == 'https://miota.me/') {
+if (window.location.host == 'miota.me') {
   let urltag = window.location.pathname.slice(1, window.location.pathname.length)
   if (urltag.match(/^[A-Z9]{6,27}$/)) {
     getAddressWithTag(urltag)
@@ -114,6 +114,9 @@ async function getAddressWithTag(tag) {
     })
     let results = [... new Set(matchingAdresses)]
     if (results.length == 0) {
+      //show input elements again
+      document.getElementById('inputs').style.display = "block";
+      document.getElementById('urldata').style.display = "none";
       return error(`No matching transaction found with tag: ${tag}`)
     } else if (results.length > 1) {
       console.error('Different addresses found: ' + array)
