@@ -27,7 +27,6 @@ if (window.location.href == 'https://miota.me/') {
   }
 }
 
-
 async function sendTransaction() {
   try {
     let address = document.getElementById("UserAddress").value
@@ -41,8 +40,7 @@ async function sendTransaction() {
       return error('Invalid checksum')
     }
     //update website elements
-    let sendElement = document.getElementsByClassName("form")
-    sendElement[0].className += 'hide'
+    document.getElementById("inputs").style.display = "none";
     let sendinfo = document.createElement('span')
     sendinfo.innerHTML = ('Sending transaction...')
     sendinfo.className = "urldata"
@@ -95,7 +93,6 @@ async function getAddressWithTag(tag) {
     document.getElementById('TagInput').style.display = "none";
     document.getElementById('urldata').style.display = "block";
     document.getElementById('urldata').innerHTML = "Search transaction...";
-
 
     let hashesWithTag = await iota.findTransactions({ tags: [tag] })
     let txObjects = await iota.getTransactionObjects(hashesWithTag)
