@@ -24,13 +24,23 @@
         <h5>Decentralized IOTA Address Shortener</h5>
       </p>
     </div>
-
+    <div align="center">WARNING: ALWAYS CHECK IF THE CHECKSUM MATCHES THE ADDRESS!</div> </br>
 
     <div class="AddressInput" id="AddressInput">
       <form class="form">
         <textarea class="input autoExpand" rows='1' type="text" id="UserAddress" placeholder="Please Enter Your Address"
           maxlength="90"></textarea>
         <input class="submitbtn" type="button" name="submit" value="Shorten Address" onclick="sendTransaction()">
+      </form>
+    </div>
+
+    </br>
+    </br>
+    <div class="TagInput" id="TagInput">
+      <form class="form">
+        <textarea class="input autoExpand" rows='1' type="text" id="UserTag"
+          placeholder="Please Enter Your TAG / miota.me URL" maxlength="45"></textarea>
+        <input class="submitbtn" type="button" name="submit" value="Get Address" onclick="getAddressWithTag()">
       </form>
     </div>
 

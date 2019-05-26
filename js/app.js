@@ -18,12 +18,12 @@ async function tryNode(pos) {
   }
 }
 
-let urltag = window.location.pathname.slice(1, 10)
-if (urltag.length != 9) {
-  console.log('No shorturl found, proceed...')
-} else {
-  getAddressWithChecksum(urltag)
-}
+// let urltag = window.location.pathname.slice(1, 10)
+// if (urltag.length != 9) {
+//   console.log('No shorturl found, proceed...')
+// } else {
+//   getAddressWithChecksum(urltag)
+// }
 
 async function sendTransaction() {
   try {
@@ -78,10 +78,15 @@ async function sendTransaction() {
   }
 }
 
-async function getAddressWithChecksum(tag) {
+async function getAddressWithTag() {
   try {
+    let tag = document.getElementById('UserTag').value
+    if (tag.slice(0, 17) == 'https://miota.me/') {
+      tag = tag.slice(17, tag.length)
+    }
+    console.log(tag);
     await new Promise(resolve => setTimeout(resolve, 1))
-    if (!tag.match(/^[A-Z9]{9}$/)) {
+    if (!tag.match(/^[A-Z9]{6,27}$/)) {
       return error('Invalid tag')
     }
     //hide input field and button
@@ -93,7 +98,7 @@ async function getAddressWithChecksum(tag) {
     //check for correct address
     txObjects.forEach(tx => {
       let addressWithChecksum = checksum.addChecksum(tx.address)
-      if (addressWithChecksum.slice(81, 90) == tag) {
+      if (addressWithChecksum.slice(-tag.length) == tag) {
         matchingAdresses.push(addressWithChecksum)
       }
     })
