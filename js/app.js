@@ -25,6 +25,12 @@ if (window.location.href == 'https://miota.me/') {
   } else {
     console.log('No shorturl found, proceed...')
   }
+} else {
+  //show find address button
+  $(function () {
+    document.getElementsByClassName('tagbutton')[0].style.display = "block";
+  });
+
 }
 
 async function sendTransaction() {
@@ -59,7 +65,7 @@ async function sendTransaction() {
 
     //update website elements
     let link = document.createElement('a');
-    link.textContent = 'https://miota.me/' + address.slice(81, 90);
+    link.innerHTML = 'https://miota.me/' + address.slice(81, 90);
     link.href = 'https://miota.me/' + address.slice(81, 90);
     link.rel = "noopener noreferrer"
     link.className = "urldata baffle"
@@ -67,10 +73,13 @@ async function sendTransaction() {
     document.getElementById('urldata').appendChild(link);
     //animate url revelation
     var s = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "9"];
-    baffle(".baffle", { characters: s })
+    await baffle(".baffle", { characters: s })
       .start()
       .reveal(200, 800)
-      .text(() => link.textContent)
+      .text(() => link.innerHTML)
+    //wait for baffle to finish
+    await new Promise(resolve => setTimeout(resolve, 1050))
+    document.getElementsByClassName('baffle')[0].innerHTML = 'https://miota.me/' + address.slice(81, 90).fontcolor("DeepSkyBlue").bold();
     document.getElementById('copybtn').style.display = "block";
   }
   catch (err) {
