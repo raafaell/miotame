@@ -102,6 +102,10 @@
     cursor: pointer;
   }
 
+  .tagbutton {
+    float: right;
+  }
+
   #copybtn {
     display: none;
   }
@@ -184,10 +188,6 @@
   }
 
   .hide {
-    display: none;
-  }
-
-  .formhide {
     display: none;
   }
 

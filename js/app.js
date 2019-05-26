@@ -29,7 +29,7 @@ if (window.location.href == 'https://miota.me/') {
 
 async function sendTransaction() {
   try {
-    let address = document.getElementById("UserAddress").value
+    let address = document.getElementById("UserInput").value
     //remove spaces
     address = address.replace(/\s/g, '')
     if (address.length != 90) {
@@ -89,8 +89,7 @@ async function getAddressWithTag(tag) {
       return error('Invalid tag')
     }
     //hide input field and button
-    document.getElementById('AddressInput').style.display = "none";
-    document.getElementById('TagInput').style.display = "none";
+    document.getElementById('inputs').style.display = "none";
     document.getElementById('urldata').style.display = "block";
     document.getElementById('urldata').innerHTML = "Search transaction...";
 

@@ -27,24 +27,11 @@
     <div align="center">WARNING: ALWAYS CHECK IF THE LAST TRYTES OF THE URL MATCH THE ADDRESS!</div> </br>
 
     <div id="inputs">
-      <div class="AddressInput" id="AddressInput">
-        <form class="form">
-          <textarea class="input autoExpand" rows='1' type="text" id="UserAddress"
-            placeholder="Please Enter Your Address" maxlength="90"></textarea>
-          <input class="submitbtn" type="button" name="submit" value="Shorten Address" onclick="sendTransaction()">
-        </form>
-      </div>
-
-      </br>
-      </br>
-      <div class="TagInput" id="TagInput">
-        <form class="form">
-          <textarea class="input autoExpand" rows='1' type="text" id="UserTag"
-            placeholder="Please Enter Your TAG / miota.me URL" maxlength="45"></textarea>
-          <input class="submitbtn" type="button" name="submit" value="Get Address"
-            onclick="getAddressWithTag(document.getElementById('UserTag').value)">
-        </form>
-      </div>
+      <textarea class="input autoExpand" rows='1' type="text" id="UserInput" placeholder="Enter Address or MIOTA.me/TAG"
+        maxlength="90"></textarea>
+      <input class="submitbtn" type="button" name="submit" value="Shorten Address" onclick="sendTransaction()">
+      <input class="submitbtn tagbutton" type="button" name="submit" value="Get Address"
+        onclick="getAddressWithTag(document.getElementById('UserInput').value)">
     </div>
 
     <span class="urldata" id="urldata"></span>
