@@ -4,6 +4,8 @@
 
 This tool uses the Tangle to retrieve data from an address and its tag. When a user inputs their address, miota.me takes the checksum from the address (last 9 trytes) and uses it as a unique tag, a zero value transaction is then sent to the address owner thus giving miota.me the ability to retrieve the address at a later time. The tag must be unique and match the addresses checksum.
 
+[Github Page](https://raafaell.github.io/miotame/)
+
 **ALWAYS CHECK IF THE CHECKSUM MATCHES THE ADDRESS!**
 ## TO DO:
 
