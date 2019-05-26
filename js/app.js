@@ -18,16 +18,24 @@ async function tryNode(pos) {
   }
 }
 
-let urltag = window.location.pathname.slice(1, 10)
-if (urltag.length != 9) {
-  console.log('No shorturl found, proceed...')
+if (window.location.href == 'https://miota.me/') {
+  let urltag = window.location.pathname.slice(1, window.location.pathname.length)
+  if (urltag.match(/^[A-Z9]{6,27}$/)) {
+    getAddressWithTag(urltag)
+  } else {
+    console.log('No shorturl found, proceed...')
+  }
 } else {
-  getAddressWithChecksum(urltag)
+  //show find address button
+  $(function () {
+    document.getElementsByClassName('tagbutton')[0].style.display = "block";
+  });
+
 }
 
 async function sendTransaction() {
   try {
-    let address = document.getElementById("UserAddress").value
+    let address = document.getElementById("UserInput").value
     //remove spaces
     address = address.replace(/\s/g, '')
     if (address.length != 90) {
@@ -38,8 +46,7 @@ async function sendTransaction() {
       return error('Invalid checksum')
     }
     //update website elements
-    let sendElement = document.getElementsByClassName("form")
-    sendElement[0].className += 'hide'
+    document.getElementById("inputs").style.display = "none";
     let sendinfo = document.createElement('span')
     sendinfo.innerHTML = ('Sending transaction...')
     sendinfo.className = "urldata"
@@ -58,7 +65,7 @@ async function sendTransaction() {
 
     //update website elements
     let link = document.createElement('a');
-    link.textContent = 'https://miota.me/' + address.slice(81, 90);
+    link.innerHTML = 'https://miota.me/' + address.slice(81, 90);
     link.href = 'https://miota.me/' + address.slice(81, 90);
     link.rel = "noopener noreferrer"
     link.className = "urldata baffle"
@@ -66,10 +73,13 @@ async function sendTransaction() {
     document.getElementById('urldata').appendChild(link);
     //animate url revelation
     var s = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "9"];
-    baffle(".baffle", { characters: s })
+    await baffle(".baffle", { characters: s })
       .start()
       .reveal(200, 800)
-      .text(() => link.textContent)
+      .text(() => link.innerHTML)
+    //wait for baffle to finish
+    await new Promise(resolve => setTimeout(resolve, 1050))
+    document.getElementsByClassName('baffle')[0].innerHTML = 'https://miota.me/' + address.slice(81, 90).fontcolor("DeepSkyBlue").bold();
     document.getElementById('copybtn').style.display = "block";
   }
   catch (err) {
@@ -78,14 +88,19 @@ async function sendTransaction() {
   }
 }
 
-async function getAddressWithChecksum(tag) {
+async function getAddressWithTag(tag) {
   try {
+    if (tag.slice(0, 17) == 'https://miota.me/') {
+      tag = tag.slice(17, tag.length)
+    }
     await new Promise(resolve => setTimeout(resolve, 1))
-    if (!tag.match(/^[A-Z9]{9}$/)) {
+    if (!tag.match(/^[A-Z9]{6,27}$/)) {
       return error('Invalid tag')
     }
     //hide input field and button
-    document.getElementById('AddressInput').style.display = "none";
+    document.getElementById('inputs').style.display = "none";
+    document.getElementById('urldata').style.display = "block";
+    document.getElementById('urldata').innerHTML = "Search transaction...";
 
     let hashesWithTag = await iota.findTransactions({ tags: [tag] })
     let txObjects = await iota.getTransactionObjects(hashesWithTag)
@@ -93,7 +108,7 @@ async function getAddressWithChecksum(tag) {
     //check for correct address
     txObjects.forEach(tx => {
       let addressWithChecksum = checksum.addChecksum(tx.address)
-      if (addressWithChecksum.slice(81, 90) == tag) {
+      if (addressWithChecksum.slice(-tag.length) == tag) {
         matchingAdresses.push(addressWithChecksum)
       }
     })
@@ -105,7 +120,7 @@ async function getAddressWithChecksum(tag) {
       return error('Different addresses found, ask for a new one!')
     } else if (results.length == 1) {
       console.log('Address found: ' + results[0])
-
+      document.getElementById('urldata').style.display = "none";
       drawQR(results[0])
 
       let deeplink = document.getElementById("deeplink")

@@ -102,6 +102,11 @@
     cursor: pointer;
   }
 
+  .tagbutton {
+    float: right;
+    display: none;
+  }
+
   #copybtn {
     display: none;
   }
@@ -187,12 +192,8 @@
     display: none;
   }
 
-  .formhide {
-    display: none;
-  }
-
   .logoarea {
-    padding-bottom: 60px;
+    padding-bottom: 30px;
   }
 
   .logo {
