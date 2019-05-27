@@ -55,7 +55,7 @@ async function sendTransaction() {
     let transfers = [{
       address: address,
       value: 0,
-      tag: addressChecksum,
+      tag: checksum.addChecksum(address).slice(81, 90),
       message: converter.asciiToTrytes('https://miota.me/')
     }]
     let trytes = await iota.prepareTransfers((seed = '9'.repeat(81)), transfers)
@@ -140,6 +140,9 @@ async function getAddressWithTag(tag) {
       deeplink.appendChild(link);
       deeplink.style.display = "block";
       deeplink.className = "deeplink"
+
+      document.getElementById('addressplaceholder').href = results[0]
+      document.getElementById('copybtnaddress').style.display = "block";
     }
   }
   catch (err) {
@@ -203,15 +206,15 @@ $(document)
   });
 
 //copy URL
-function copyURL() {
-  let element = ".baffle"
+function copyElement(name, element) {
+  console.log(element);
   var $temp = $("<input>");
   $("body").append($temp);
   console.log()
   $temp.val($(element).attr('href')).select();
   document.execCommand("copy");
   Swal.fire(
-    'URL copied:',
+    name + ' copied:',
     $(element).attr('href'),
     'success'
   )

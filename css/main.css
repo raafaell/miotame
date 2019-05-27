@@ -1,232 +1,244 @@
 	html, body {
 	  height: 100%;
 	}
+
 	body {
 	  display: flex;
 	  flex-direction: column;
 	  font-family: 'Jura', sans-serif;
 	}
-  h5 {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-    display: block;
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
 
-  p {
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-  }
+	h5 {
+	  font-size: 14px;
+	  color: #333;
+	  text-align: center;
+	  display: block;
+	  margin-block-start: 0;
+	  margin-block-end: 0;
+	}
 
-  a {
-    text-decoration: none;
-    color: #5aa760;
-    cursor: pointer;
+	p {
+	  margin-block-start: 0;
+	  margin-block-end: 0;
+	  margin-inline-start: 0px;
+	  margin-inline-end: 0px;
+	}
 
-  }
-  input {
-    font-size: 13.5px;
-    font-family: monospace;
-    padding: 12px;
-    border: 1px solid #ccc;
-    width: 100%;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    margin-left: auto;
-    margin-right: auto;
-    outline: none;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
+	a {
+	  text-decoration: none;
+	  color: #5aa760;
+	  cursor: pointer;
+	}
 
-  input:hover {
-    box-shadow: 0px 0px 12px -5px #585858;
-  }
+	input {
+	  font-size: 13.5px;
+	  font-family: monospace;
+	  padding: 12px;
+	  border: 1px solid #ccc;
+	  width: 100%;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	  margin-left: auto;
+	  margin-right: auto;
+	  outline: none;
+	  -webkit-box-sizing: border-box;
+	  -moz-box-sizing: border-box;
+	  box-sizing: border-box;
+	}
 
-  input:-webkit-autofill {
-    background-color: #F2F2F2 !important;
-  }
+	input:hover {
+	  box-shadow: 0px 0px 12px -5px #585858;
+	}
 
-  input:-internal-autofill-selected {
-    background-color: rgb(232, 240, 254) !important;
-  }
+	input:-webkit-autofill {
+	  background-color: #F2F2F2 !important;
+	}
 
-  input[type="text"] {
-    -webkit-transition: all 0.7s ease 0s;
-    -moz-transition: all 0.7s ease 0s;
-    -o-transition: all 0.7s ease 0s;
-    transition: all 0.7s ease 0s;
-    font-family: monospace;
-  }
+	input:-internal-autofill-selected {
+	  background-color: rgb(232, 240, 254) !important;
+	}
 
-  textarea {
-    -webkit-transition: all 0.7s ease 0s;
-    -moz-transition: all 0.7s ease 0s;
-    -o-transition: all 0.7s ease 0s;
-    transition: all 0.7s ease 0s;
-    font-size: 13.5px;
-    font-family: monospace;
-    padding: 12px;
-    border: 1px solid #ccc;
-    width: 100%;
-    outline-color: #7be483;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    box-sizing: padding-box;
-    word-break: break-word;
-    max-height: 70px;
-    resize: none;
-    overflow: hidden;
-  }
+	input[type="text"] {
+	  -webkit-transition: all 0.7s ease 0s;
+	  -moz-transition: all 0.7s ease 0s;
+	  -o-transition: all 0.7s ease 0s;
+	  transition: all 0.7s ease 0s;
+	  font-family: monospace;
+	}
 
-  textarea:hover {
-    box-shadow: 0px 0px 12px -5px #585858;
-  }
+	textarea {
+	  -webkit-transition: all 0.7s ease 0s;
+	  -moz-transition: all 0.7s ease 0s;
+	  -o-transition: all 0.7s ease 0s;
+	  transition: all 0.7s ease 0s;
+	  font-size: 13.5px;
+	  font-family: monospace;
+	  padding: 12px;
+	  border: 1px solid #ccc;
+	  width: 100%;
+	  outline-color: #7be483;
+	  -webkit-box-sizing: border-box;
+	  -moz-box-sizing: border-box;
+	  box-sizing: border-box;
+	  box-sizing: padding-box;
+	  word-break: break-word;
+	  max-height: 70px;
+	  resize: none;
+	  overflow: hidden;
+	}
 
-  textarea:-webkit-autofill {
-    background-color: #F2F2F2 !important;
-  }
+	textarea:hover {
+	  box-shadow: 0px 0px 12px -5px #585858;
+	}
 
-  textarea:-internal-autofill-selected {
-    background-color: rgb(232, 240, 254) !important;
-  }
-  .content {
-	flex: 1 0;
-  }
-  .footer {
-	text-align: center;
-	padding: 30px;
-  }
+	textarea:-webkit-autofill {
+	  background-color: #F2F2F2 !important;
+	}
 
-  .submitbtn {
-    background-color: #f5f5f5;
-    border-radius: 1px padding;
-    color: #555;
-    width: 48%;
-    margin: 30px auto 0px auto;
-    cursor: pointer;
-  }
+	textarea:-internal-autofill-selected {
+	  background-color: rgb(232, 240, 254) !important;
+	}
 
-  .tagbutton {
-    float: right;
-    display: none;
-  }
+	.content {
+	  flex: 1 0;
+	}
 
-  #copybtn {
-    display: none;
-  }
+	.footer {
+	  text-align: center;
+	  padding: 30px;
+	}
 
-  .info {
-    width: 100%;
-    -ms-display: flexbox;
-    display: flex;
-    flex-wrap: wrap;
-  }
+	.submitbtn {
+	  background-color: #f5f5f5;
+	  border-radius: 1px padding;
+	  color: #555;
+	  width: 48%;
+	  margin: 30px auto 0px auto;
+	  cursor: pointer;
+	}
 
-  .info>span {
-    width: 100%;
-    padding: 30px;
-    height: auto;
-    flex-wrap: wrap;
-    padding-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+	.tagbutton {
+	  float: right;
+	  display: none;
+	}
 
-  #qrcode-canvas {
-    display: none;
-  }
+	#copybtn {
+	  display: none;
+	}
 
-  #deeplink {
-    display: none;
-  }
+	#copybtnaddress {
+	  display: none;
+	}
 
-  .deeplink {
-    display: block;
-    font-family: monospace;
-    max-width: 172px;
-    min-width: 172px;
-    word-break: break-word;
-    font-size: 14px;
-    text-align: center;
-    letter-spacing: 8px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: -4px;
-  }
+	#addressplaceholder {
+	  display: none;
+	}
 
-  .deeplinktitle {
-    font-family: 'Jura', sans-serif;
-    letter-spacing: 0px;
-  }
+	.info {
+	  width: 100%;
+	  -ms-display: flexbox;
+	  display: flex;
+	  flex-wrap: wrap;
+	}
 
-  #blockright {
-    max-width: 172px;
-    display: none;
-  }
+	.info>span {
+	  width: 100%;
+	  padding: 30px;
+	  height: auto;
+	  flex-wrap: wrap;
+	  padding-top: 20px;
+	  margin-left: auto;
+	  margin-right: auto;
+	}
 
-  #QR {
-    width: auto;
-    margin-right: auto;
-  }
+	#qrcode-canvas {
+	  display: none;
+	}
 
-  #urldata {
-    display: none;
-  }
+	#deeplink {
+	  display: none;
+	}
 
-  .urldata {
-    font-size: 16px;
-    display: block;
-    text-align: center;
-    padding: 10px;
-  }
+	.deeplink {
+	  display: block;
+	  font-family: monospace;
+	  max-width: 172px;
+	  min-width: 172px;
+	  word-break: break-word;
+	  font-size: 14px;
+	  text-align: center;
+	  letter-spacing: 8px;
+	  margin-right: auto;
+	  margin-left: auto;
+	  margin-top: -4px;
+	}
 
-  .main {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 700px !important;
-    padding-top: 300px !important;
-  }
+	.deeplinktitle {
+	  font-family: 'Jura', sans-serif;
+	  letter-spacing: 0px;
+	}
 
-  .show {
-    display: block;
-  }
+	#blockright {
+	  max-width: 172px;
+	  display: none;
+	}
 
-  .hide {
-    display: none;
-  }
+	#QR {
+	  width: auto;
+	  margin-right: auto;
+	}
 
-  .logoarea {
-    padding-bottom: 30px;
-  }
+	#urldata {
+	  display: none;
+	}
 
-  .logo {
-    font-family: 'Jura', sans-serif;
-    font-size: 64px;
-    color: #333;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
+	.urldata {
+	  font-size: 16px;
+	  display: block;
+	  text-align: center;
+	  padding: 10px;
+	}
 
-  .logo>a {
-  	text-decoration: none;
-  	color: #333;
-  }
+	.main {
+	  margin-left: auto;
+	  margin-right: auto;
+	  max-width: 700px !important;
+	  padding-top: 300px !important;
+	}
 
-  @media only screen and (max-width: 728px) {
-    .main {
-      padding-top: 100px !important;
-    }
-    .submitbtn {
-      background-color: #f5f5f5;
-      border-radius: 1px padding: 10px;
-      font-size: 12px;
-    }
+	.show {
+	  display: block;
+	}
+
+	.hide {
+	  display: none;
+	}
+
+	.logoarea {
+	  padding-bottom: 30px;
+	}
+
+	.logo {
+	  font-family: 'Jura', sans-serif;
+	  font-size: 64px;
+	  color: #333;
+	  text-align: center;
+	  margin-left: auto;
+	  margin-right: auto;
+	  display: block;
+	}
+
+	.logo>a {
+	  text-decoration: none;
+	  color: #333;
+	}
+
+	@media only screen and (max-width: 728px) {
+	  .main {
+	    padding-top: 100px !important;
+	  }
+	  .submitbtn {
+	    background-color: #f5f5f5;
+	    border-radius: 1px padding: 10px;
+	    font-size: 12px;
+	  }

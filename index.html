@@ -18,39 +18,47 @@
 
 <body>
 
-<div class="content">
+  <div class="content">
 
-  <div class="main">
-    <div class="logoarea">
-      <p class="logo" id="logo"><a href="https://miota.me/">MIOT&Lambda;.me</a>
-        <h5>Decentralized IOTA Address Shortener</h5>
-      </p>
+    <div class="main">
+      <div class="logoarea">
+        <p class="logo" id="logo"><a href="https://miota.me/">MIOT&Lambda;.me</a>
+          <h5>Decentralized IOTA Address Shortener</h5>
+        </p>
+      </div>
+      <div align="center">ALWAYS CHECK IF THE LAST TRYTES OF THE URL MATCHES THE ADDRESS!</div> </br>
+
+      <div id="inputs">
+        <textarea class="input autoExpand" rows='1' type="text" id="UserInput" placeholder="Please Enter Address"
+          maxlength="90"></textarea>
+        <input class="submitbtn" type="button" name="submit" value="Create Short URL" onclick="sendTransaction()">
+        <input class="submitbtn tagbutton" type="button" name="submit" value="Find Address"
+          onclick="getAddressWithTag(document.getElementById('UserInput').value)">
+      </div>
+
+      <span class="urldata" id="urldata"></span>
+      <input class="submitbtn" id="copybtn" type="button" name="submit" value="Copy URL"
+        onclick="copyElement('URL', '.baffle')">
+
+      <a id="addressplaceholder"></a>
+      <input class="submitbtn" id="copybtnaddress" type="button" name="submit" value="Copy Address"
+        onclick="copyElement('Address', '#addressplaceholder')">
+
+      <div class="info">
+        <span class="deeplink" id="deeplink"></span>
+        <span class="QR" id="QR">
+          <canvas id="qrcode-canvas"></canvas>
+        </span>
+        <span id="blockright">Some content here.</span>
+      </div>
     </div>
-    <div align="center">ALWAYS CHECK IF THE LAST TRYTES OF THE URL MATCHES THE ADDRESS!</div> </br>
 
-    <div id="inputs">
-      <textarea class="input autoExpand" rows='1' type="text" id="UserInput" placeholder="Please Enter Address" maxlength="90"></textarea>
-      <input class="submitbtn" type="button" name="submit" value="Create Short URL" onclick="sendTransaction()">
-      <input class="submitbtn tagbutton" type="button" name="submit" value="Find Address" onclick="getAddressWithTag(document.getElementById('UserInput').value)">
-    </div>
-
-    <span class="urldata" id="urldata"></span>
-    <input class="submitbtn" id="copybtn" type="button" name="submit" value="Copy URL" onclick="copyURL()">
-
-    <div class="info">
-      <span class="deeplink" id="deeplink"></span>
-      <span class="QR" id="QR">
-        <canvas id="qrcode-canvas"></canvas>
-      </span>
-      <span id="blockright">Some content here.</span>
-    </div>
   </div>
 
-</div>
-
   <footer class="footer">
-    © 2019 MIOTA.me - <a href="https://github.com/raafaell/miotame" target="_blank"><img style="margin-bottom: -3px;" src="img/git.png" height="18"> </a>
- </footer>
+    © 2019 MIOTA.me - <a href="https://github.com/raafaell/miotame" target="_blank"><img style="margin-bottom: -3px;"
+        src="img/git.png" height="18"> </a>
+  </footer>
 
 </body>
 
