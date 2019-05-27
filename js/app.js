@@ -41,8 +41,7 @@ async function sendTransaction() {
     if (address.length != 90) {
       return error('Invalid address length')
     }
-    let addressChecksum = checksum.addChecksum(address.slice(0, 81)).slice(81, 90)
-    if (address.slice(81, 90) != addressChecksum) {
+    if (!checksum.isValidChecksum(address)) {
       return error('Invalid checksum')
     }
     //update website elements

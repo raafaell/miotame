@@ -18,20 +18,20 @@
 
 <body>
 
+<div class="content">
+
   <div class="main">
     <div class="logoarea">
       <p class="logo" id="logo"><a href="https://miota.me/">MIOT&Lambda;.me</a>
         <h5>Decentralized IOTA Address Shortener</h5>
       </p>
     </div>
-    <div align="center">WARNING: ALWAYS CHECK IF THE LAST TRYTES OF THE URL MATCH THE ADDRESS!</div> </br>
+    <div align="center">ALWAYS CHECK IF THE LAST TRYTES OF THE URL MATCHES THE ADDRESS!</div> </br>
 
     <div id="inputs">
-      <textarea class="input autoExpand" rows='1' type="text" id="UserInput" placeholder="Enter Address or MIOTA.me/TAG"
-        maxlength="90"></textarea>
+      <textarea class="input autoExpand" rows='1' type="text" id="UserInput" placeholder="Please Enter Address" maxlength="90"></textarea>
       <input class="submitbtn" type="button" name="submit" value="Create Short URL" onclick="sendTransaction()">
-      <input class="submitbtn tagbutton" type="button" name="submit" value="Find Address"
-        onclick="getAddressWithTag(document.getElementById('UserInput').value)">
+      <input class="submitbtn tagbutton" type="button" name="submit" value="Find Address" onclick="getAddressWithTag(document.getElementById('UserInput').value)">
     </div>
 
     <span class="urldata" id="urldata"></span>
@@ -44,8 +44,13 @@
       </span>
       <span id="blockright">Some content here.</span>
     </div>
-
   </div>
+
+</div>
+
+  <footer class="footer">
+    © 2019 MIOTA.me - <a href="https://github.com/raafaell/miotame" target="_blank"><img style="margin-bottom: -3px;" src="img/git.png" height="18"> </a>
+ </footer>
 
 </body>
 
