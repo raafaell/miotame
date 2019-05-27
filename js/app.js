@@ -3,6 +3,7 @@ var iota = core.composeAPI({
   provider: 'https://nodes.thetangle.org:443'
 })
 tryNode(0)
+//select responding node
 async function tryNode(pos) {
   try {
     iota = core.composeAPI({
@@ -18,6 +19,7 @@ async function tryNode(pos) {
   }
 }
 
+//check if it's miota.me, otherwise show the button to find the address with tag/miota.me URL
 if (window.location.host == 'miota.me') {
   let urltag = window.location.pathname.slice(1, window.location.pathname.length)
   if (urltag.match(/^[A-Z9]{6,27}$/)) {
@@ -26,8 +28,8 @@ if (window.location.host == 'miota.me') {
     console.log('No shorturl found, proceed...')
   }
 } else {
-  //show find address button
   $(function () {
+    document.getElementById('UserInput').placeholder = 'Enter Address or MIOTA.me/TAG'
     document.getElementsByClassName('tagbutton')[0].style.display = "block";
   });
 
@@ -55,7 +57,7 @@ async function sendTransaction() {
     let transfers = [{
       address: address,
       value: 0,
-      tag: checksum.addChecksum(address).slice(81, 90),
+      tag: checksum.addChecksum(address).slice(-9),
       message: converter.asciiToTrytes('https://miota.me/')
     }]
     let trytes = await iota.prepareTransfers((seed = '9'.repeat(81)), transfers)
@@ -64,8 +66,8 @@ async function sendTransaction() {
 
     //update website elements
     let link = document.createElement('a');
-    link.innerHTML = 'https://miota.me/' + address.slice(81, 90);
-    link.href = 'https://miota.me/' + address.slice(81, 90);
+    link.innerHTML = 'https://miota.me/' + address.slice(-9);
+    link.href = 'https://miota.me/' + address.slice(-9);
     link.rel = "noopener noreferrer"
     link.className = "urldata baffle"
     document.getElementById('urldata').removeChild(sendinfo);
@@ -78,7 +80,7 @@ async function sendTransaction() {
       .text(() => link.innerHTML)
     //wait for baffle to finish
     await new Promise(resolve => setTimeout(resolve, 1050))
-    document.getElementsByClassName('baffle')[0].innerHTML = 'https://miota.me/' + address.slice(81, 90).fontcolor("DeepSkyBlue").bold();
+    document.getElementsByClassName('baffle')[0].innerHTML = 'https://miota.me/' + address.slice(-9).fontcolor("DeepSkyBlue").bold();
     document.getElementById('copybtn').style.display = "block";
   }
   catch (err) {
@@ -111,6 +113,7 @@ async function getAddressWithTag(tag) {
         matchingAdresses.push(addressWithChecksum)
       }
     })
+    //return each address only once
     let results = [... new Set(matchingAdresses)]
     if (results.length == 0) {
       //show input elements again
@@ -127,7 +130,7 @@ async function getAddressWithTag(tag) {
 
       let deeplink = document.getElementById("deeplink")
       let link = document.createElement('a');
-      link.innerHTML = results[0].slice(0, 81).fontcolor("DarkSlateGray") + results[0].slice(81, 90).fontcolor("DeepSkyBlue").bold()
+      link.innerHTML = results[0].slice(0, 81).fontcolor("DarkSlateGray") + results[0].slice(-9).fontcolor("DeepSkyBlue").bold()
       link.href = "iota://" + results[0];
       link.rel = "noopener noreferrer"
       link.target = "_self"
@@ -168,26 +171,11 @@ function drawQR(address) {
 }
 
 function error(errorMessage) {
-  if (errorMessage == 'Failed to fetch') {
-    Swal.fire({
-      title: errorMessage,
-      text: "Retry?",
-      type: 'warning',
-      showCancelButton: false,
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Retry'
-    }).then(() => {
-      if (urltag.length == 9) {
-        getAddressWithChecksum(urltag)
-      }
-    })
-  } else {
-    Swal.fire(
-      errorMessage,
-      '',
-      'error'
-    )
-  }
+  Swal.fire(
+    errorMessage,
+    '',
+    'error'
+  )
 }
 
 //expand inputfield automatically
@@ -207,15 +195,15 @@ $(document)
 
 //copy URL
 function copyElement(name, element) {
-  console.log(element);
   var $temp = $("<input>");
   $("body").append($temp);
-  console.log()
   $temp.val($(element).attr('href')).select();
   document.execCommand("copy");
+  let info = $(element).attr('href')
+  info = info.slice(0, -9) + info.slice(-9).fontcolor("DeepSkyBlue").bold()
   Swal.fire(
     name + ' copied:',
-    $(element).attr('href'),
+    info,
     'success'
   )
   $temp.remove();
