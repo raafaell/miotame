@@ -8,7 +8,7 @@ This tool uses the Tangle to retrieve data from an address and its tag. When a u
 
 **ALWAYS CHECK IF THE CHECKSUM MATCHES THE ADDRESS!**
 
-##Setup
+## Setup
 
 `npm i`
 
