@@ -30,5 +30,8 @@ Pull requests are welcome (and encouraged). For major changes, please open an is
 
 Please make sure to update tests as appropriate.
 
+## Dependencies
+qrcodege.js is from https://github.com/nayuki/QR-Code-generator/blob/master/javascript/qrcodegen.js
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
