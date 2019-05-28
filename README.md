@@ -7,6 +7,13 @@ This tool uses the Tangle to retrieve data from an address and its tag. When a u
 [Github Page](https://raafaell.github.io/miotame/)
 
 **ALWAYS CHECK IF THE CHECKSUM MATCHES THE ADDRESS!**
+
+##Setup
+
+`npm i`
+
+`npm run build`
+
 ## TO DO:
 
 
