@@ -101,7 +101,7 @@ async function getAddressWithTag(tag) {
     //hide input field and button
     document.getElementById('inputs').style.display = "none";
     document.getElementById('urldata').style.display = "block";
-    document.getElementById('urldata').innerHTML = "Search transaction...";
+    document.getElementById('urldata').innerHTML = "Searching transaction...";
 
     let hashesWithTag = await iota.findTransactions({ tags: [tag] })
     let txObjects = await iota.getTransactionObjects(hashesWithTag)
@@ -117,7 +117,6 @@ async function getAddressWithTag(tag) {
     let results = [... new Set(matchingAdresses)]
     if (results.length == 0) {
       //show input elements again
-      document.getElementById('inputs').style.display = "block";
       document.getElementById('urldata').style.display = "none";
       return error(`No matching transaction found with tag: ${tag}`)
     } else if (results.length > 1) {
@@ -146,6 +145,7 @@ async function getAddressWithTag(tag) {
 
       document.getElementById('addressplaceholder').href = results[0]
       document.getElementById('copybtnaddress').style.display = "block";
+      document.getElementById("infoblock").classList.remove('hide');
     }
   }
   catch (err) {
