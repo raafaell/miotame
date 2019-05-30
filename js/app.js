@@ -155,19 +155,15 @@ async function getAddressWithTag(tag) {
 }
 
 function drawQR(address) {
-  var canvas = document.getElementById("qrcode-canvas");
+  var canvas = document.getElementById("qrcode");
   canvas.style.display = "block";
-
-  var ecl = qrcodegen.QrCode.Ecc.QUARTILE;
-  var segs = qrcodegen.QrSegment.makeSegments(address);
-  var minVer = 1
-  var maxVer = 10
-  var mask = -1
-  var boostEcc = true;
-  var qr = qrcodegen.QrCode.encodeSegments(segs, ecl, minVer, maxVer, mask, boostEcc);
-  var border = 0;
-  var scale = 4
-  qr.drawCanvas(scale, border, canvas);
+  var qrcode = new QRious({
+    element: document.getElementById('qrcode'),
+    size: 164,
+    padding: 0,
+    level: 'M',
+    value: address
+  })
 }
 
 function error(errorMessage) {

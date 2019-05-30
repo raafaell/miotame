@@ -7,6 +7,13 @@ This tool uses the Tangle to retrieve data from an address and its tag. When a u
 [Github Page](https://raafaell.github.io/miotame/)
 
 **ALWAYS CHECK IF THE CHECKSUM MATCHES THE ADDRESS!**
+
+## Setup
+
+`npm i`
+
+`npm run build`
+
 ## TO DO:
 
 
@@ -22,6 +29,9 @@ This tool uses the Tangle to retrieve data from an address and its tag. When a u
 Pull requests are welcome (and encouraged). For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+## Dependencies
+qrcodege.js is from https://github.com/nayuki/QR-Code-generator/blob/master/javascript/qrcodegen.js
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
