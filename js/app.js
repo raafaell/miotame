@@ -19,8 +19,8 @@ async function tryNode(pos) {
   }
 }
 
-//check if it's miota.me, otherwise show the button to find the address with tag/miota.me URL
-if (window.location.host == 'miota.me') {
+//check if it's kiota.me, otherwise show the button to find the address with tag/kiota.me URL
+if (window.location.host == 'kiota.me') {
   let urltag = window.location.pathname.slice(1, window.location.pathname.length)
   if (urltag.match(/^[A-Z9]{6,27}$/)) {
     getAddressWithTag(urltag)
@@ -29,7 +29,7 @@ if (window.location.host == 'miota.me') {
   }
 } else {
   $(function () {
-    document.getElementById('UserInput').placeholder = 'Enter Address or MIOTA.me/TAG'
+    document.getElementById('UserInput').placeholder = 'Enter Address or KIOTA.me/TAG'
     document.getElementsByClassName('tagbutton')[0].style.display = "block";
   });
 
@@ -58,7 +58,7 @@ async function sendTransaction() {
       address: address,
       value: 0,
       tag: checksum.addChecksum(address).slice(-9),
-      message: converter.asciiToTrytes('https://miota.me/')
+      message: converter.asciiToTrytes('https://kiota.me/')
     }]
     let trytes = await iota.prepareTransfers((seed = '9'.repeat(81)), transfers)
     let bundle = await iota.sendTrytes(trytes, (depth = 3), (minWeightMagnitude = 14))
@@ -66,8 +66,8 @@ async function sendTransaction() {
 
     //update website elements
     let link = document.createElement('a');
-    link.innerHTML = 'https://miota.me/' + address.slice(-9);
-    link.href = 'https://miota.me/' + address.slice(-9);
+    link.innerHTML = 'https://kiota.me/' + address.slice(-9);
+    link.href = 'https://kiota.me/' + address.slice(-9);
     link.rel = "noopener noreferrer"
     link.className = "urldata baffle"
     document.getElementById('urldata').removeChild(sendinfo);
@@ -80,7 +80,7 @@ async function sendTransaction() {
       .text(() => link.innerHTML)
     //wait for baffle to finish
     await new Promise(resolve => setTimeout(resolve, 1050))
-    document.getElementsByClassName('baffle')[0].innerHTML = 'https://miota.me/' + address.slice(-9).fontcolor("DeepSkyBlue").bold();
+    document.getElementsByClassName('baffle')[0].innerHTML = 'https://kiota.me/' + address.slice(-9).fontcolor("DeepSkyBlue").bold();
     document.getElementById('copybtn').style.display = "block";
   }
   catch (err) {
@@ -91,7 +91,7 @@ async function sendTransaction() {
 
 async function getAddressWithTag(tag) {
   try {
-    if (tag.slice(0, 17) == 'https://miota.me/') {
+    if (tag.slice(0, 17) == 'https://kiota.me/') {
       tag = tag.slice(17, tag.length)
     }
     await new Promise(resolve => setTimeout(resolve, 1))
