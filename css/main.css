@@ -322,6 +322,10 @@
 	  color: #333;
 	}
 
+	.autoExpand {
+		display: block;
+	}
+
 	@media only screen and (max-width: 600px) {
 	  body {
 	    position: relative;

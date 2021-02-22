@@ -17,8 +17,8 @@
   <script src="node_modules/qrious/dist/qrious.min.js"></script>
   <script src="js/app.js" type="text/javascript"></script>
   <script src="js/gtag.js" type="text/javascript"></script>
-  <script src="https://unpkg.com/tooltip-sequence@latest/dist/index.min.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/tooltip-sequence@latest/dist/index.css">
+  <script src="js/index.min.js"></script>
+  <link rel="stylesheet" href="css/index.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Jura:300&display=swap" rel="stylesheet">
 
@@ -35,7 +35,7 @@
         </p>
       </div>
       <div id="inputs">
-        <input class="text" rows='1' type="text" id="UserInput" autofocus="autofocus" onfocus="this.select()" placeholder="Paste Your IOTA Address or kiota.me/TAG" title="Paste Your IOTA Address or TAG" maxlength="90"></input>
+        <input class="text autoExpand" rows='1' type="text" id="UserInput" autofocus="autofocus" onfocus="this.select()" placeholder="Paste Your IOTA Address or kiota.me/TAG" title="Paste Your IOTA Address or TAG" maxlength="90"></input>
 
         <div class="buttons_main">
           <input class="submitbtn" id="createurl" type="button" name="submit" value="Create Short URL" title="Shorten Your Address" onclick="sendTransaction()">
@@ -75,11 +75,6 @@
 
   </div>
 
-          <script type="text/javascript">
-            warn.innerHTML = "Always check if the last trytes of the URL matches the address!"
-            setTimeout(function () { $('.warn').fadeOut('slow'); }, 5000);
-        </script>
-
   <script type="text/javascript">
 
     if (document.cookie.split(';').some((item) => item.trim().startsWith('kiota'))) {
@@ -110,6 +105,8 @@
     placement:"top"
   }],
   onComplete:function() {
+    warn.innerHTML = "Always check if the last trytes of the URL matches the address!"
+    setTimeout(function () { $('.warn').fadeOut('slow'); }, 8000);
     document.cookie = "kiota";
   }
 };
