@@ -44,6 +44,7 @@
 
         <span class="warn" id="warn"></span>
 
+
       </div>
 
       <span class="urldata" id="urldata"></span>
@@ -68,38 +69,52 @@
       </div>
 
     </div>
-  <footer class="footer">
+  <footer class="footer" id="footer">
     © 2019 KIOTA.me // Powered by <a href="https://iota.org/" target="_blank">IOTA</a> // <a href="https://medium.com/@raafaelll/introducing-miota-me-a-decentralized-iota-address-shortener-a260c41a1e15" target="_blank">About</a> // <a href="https://github.com/raafaell/miotame" target="_blank"><img style="margin-bottom: -3px;" src="img/git.png" height="18" alt="Fork on Github"></a>
   </footer>
 
   </div>
 
-<script type="text/javascript">
+          <script type="text/javascript">
+            warn.innerHTML = "Always check if the last trytes of the URL matches the address!"
+            setTimeout(function () { $('.warn').fadeOut('slow'); }, 5000);
+        </script>
+
+  <script type="text/javascript">
+
+    if (document.cookie.split(';').some((item) => item.trim().startsWith('kiota'))) {
+    console.log('Cookie exists, wont show tooltips')
+} else {
   const options = {
   backdropColor:"transparent || #f2f2f2",
   sequence:[{
     element:"#logo",
-    description:"Welcome to kiota.me, I can help you share your IOTA Address in a much better way, without the 90 letters and numbers. Please click next to learn more.",
+    description:"Welcome to kiota.me, I can help you share your IOTA Address in a much cleaner way, without the 90 letters and numbers. Please click next to learn more.",
     placement:"top"
   },{
     element:"#UserInput",
-    description:"This is where you will paste your IOTA Receiving Address. We will send a transaction to the Tangle with the last 9 trytes of your address as a TAG.",
+    description:"This is where you will paste your IOTA Receiving Address. We will send a transaction to the Tangle with the last 9 trytes of your address and use it as a TAG.",
     placement:"left"
   },{
     element:"#createurl",
-    description:"After you paste your address, click this button to create your short address. It may take a few seconds to send the transaction to the Tangle.",
+    description:"After you paste your 90 trytes address, click this button to create your short address. It may take a few seconds to send the transaction to the Tangle.",
     placement:"bottom"
   },{
     element:"#searchtag",
     description:"Use this button to search an address matching the a TAG, i.e. https://kiota.me/ATIAKOXL9. In this case, ATIAKOXL9 is the TAG.",
     placement:"bottom"
+  },
+  {
+    element:"#footer",
+    description:"You can learn more about this project and contribute on github! This project was made with love by @IOTABeeliever and ",
+    placement:"top"
   }],
   onComplete:function() {
-    warn.innerHTML = "Always check if the last trytes of the URL matches the address!"
-    setTimeout(function () { $('.warn').fadeOut('slow'); }, 5000);
+    document.cookie = "kiota";
   }
 };
 createSequence(options);
+}
 </script>
 </body>
 </html>

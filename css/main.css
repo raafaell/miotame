@@ -259,6 +259,7 @@
 	  margin-right: auto;
 	  margin-left: auto;
 	  margin-top: -4px;
+	  box-sizing: content-box;
 	}
 
 	.deeplinktitle {
@@ -321,3 +322,27 @@
 	  color: #333;
 	}
 
+	@media only screen and (max-width: 600px) {
+	  body {
+	    position: relative;
+		height: max-content;
+		top: -150px;
+	  }
+	  .submitbtn {
+		background-color: #f8f9fa;
+		border: 1px solid #f8f9fa;
+		border-radius: 5px;
+		color: #555;
+		width: 40%;
+		cursor: pointer;
+		margin: 10px;
+	  }
+	  .footer {
+		position: fixed;
+		bottom: 0;
+		padding: 20px;
+		text-align: center;
+		width: 100%;
+		font-size: 13px;
+	  }
+	}

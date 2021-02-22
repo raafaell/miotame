@@ -30,7 +30,7 @@ if (window.location.host == 'kiota.me') {
 } else {
   $(function () {
     document.getElementById('UserInput')
-    document.getElementsByClassName('tagbutton')[0].style.display = "block";
+    //document.getElementsByClassName('tagbutton')[0].style.display = "block";
   });
 
 }
