@@ -17,6 +17,8 @@
   <script src="node_modules/qrious/dist/qrious.min.js"></script>
   <script src="js/app.js" type="text/javascript"></script>
   <script src="js/gtag.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/tooltip-sequence@latest/dist/index.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/tooltip-sequence@latest/dist/index.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Jura:300&display=swap" rel="stylesheet">
 
@@ -29,26 +31,23 @@
     <div class="main">
       <div class="logoarea">
         <p class="logo" id="logo"><a href="https://kiota.me/">KIOT&Lambda;.me</a>
-          <h5>Decentralized IOTA Address Shortener</h5>
+          
         </p>
       </div>
-      <div align="center">ALWAYS CHECK IF THE LAST TRYTES OF THE URL MATCHES THE ADDRESS!</div></br>
-
       <div id="inputs">
-        <textarea class="input autoExpand" rows='1' type="text" id="UserInput" placeholder="Please Enter Address"
-          maxlength="90"></textarea>
-        <input class="submitbtn" type="button" name="submit" value="Create Short URL" onclick="sendTransaction()">
-        <input class="submitbtn tagbutton" type="button" name="submit" value="Find Address"
-          onclick="getAddressWithTag(document.getElementById('UserInput').value)">
+        <input class="text" rows='1' type="text" id="UserInput" autofocus="autofocus" onfocus="this.select()" placeholder="Paste Your IOTA Address or kiota.me/TAG" title="Paste Your IOTA Address or TAG" maxlength="90"></input>
+
+        <div class="buttons_main">
+          <input class="submitbtn" id="createurl" type="button" name="submit" value="Create Short URL" title="Shorten Your Address" onclick="sendTransaction()">
+          <input class="submitbtn" id="searchtag" type="button" name="submit" value="Find Address" title="Find Address With TAG" onclick="getAddressWithTag(document.getElementById('UserInput').value)">
+        </div>
+
+        <span class="warn" id="warn"></span>
+
       </div>
 
       <span class="urldata" id="urldata"></span>
-      <input class="submitbtn" id="copybtn" type="button" name="submit" value="Copy URL"
-        onclick="copyElement('URL', '.baffle')">
-
-      <a id="addressplaceholder"></a>
-      <input class="submitbtn" id="copybtnaddress" type="button" name="submit" value="Copy Address"
-        onclick="copyElement('Address', '#addressplaceholder')">
+      <input id="copybtn" type="button" name="submit" value="Copy URL" onclick="copyElement('URL', '.baffle')">
 
         <div id="infoblock" class="hide">
           <p class="infotitle">Short Address Details</p>
@@ -62,16 +61,45 @@
 
       </div>
 
+      <div class="buttons">
+      <a id="addressplaceholder"></a>
+      <input class="submitbtn" id="backhome" type="button" name="home" value="Back to Home" onclick="window.location = 'https://kiota.me';  ">
+      <input class="submitbtn" id="copybtnaddress" type="button" name="submit" value="Copy Address" onclick="copyElement('Address', '#addressplaceholder')">
+      </div>
+
     </div>
+  <footer class="footer">
+    © 2019 KIOTA.me // Powered by <a href="https://iota.org/" target="_blank">IOTA</a> // <a href="https://medium.com/@raafaelll/introducing-miota-me-a-decentralized-iota-address-shortener-a260c41a1e15" target="_blank">About</a> // <a href="https://github.com/raafaell/miotame" target="_blank"><img style="margin-bottom: -3px;" src="img/git.png" height="18" alt="Fork on Github"></a>
+  </footer>
 
   </div>
 
-  <footer class="footer">
-    © 2019 KIOTA.me - Powered by <a href="https://iota.org/" target="_blank">IOTA</a> - Fork us <a href="https://github.com/raafaell/miotame" target="_blank"><img style="margin-bottom: -3px;" src="img/git.png" height="18" alt="Fork on Github"></a> - <a href="https://medium.com/@raafaelll/introducing-miota-me-a-decentralized-iota-address-shortener-a260c41a1e15" target="_blank">About</a>
-  </footer>
-
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140442120-1"></script>
-
+<script type="text/javascript">
+  const options = {
+  backdropColor:"transparent || #f2f2f2",
+  sequence:[{
+    element:"#logo",
+    description:"Welcome to kiota.me, I can help you share your IOTA Address in a much better way, without the 90 letters and numbers. Please click next to learn more.",
+    placement:"top"
+  },{
+    element:"#UserInput",
+    description:"This is where you will paste your IOTA Receiving Address. We will send a transaction to the Tangle with the last 9 trytes of your address as a TAG.",
+    placement:"left"
+  },{
+    element:"#createurl",
+    description:"After you paste your address, click this button to create your short address. It may take a few seconds to send the transaction to the Tangle.",
+    placement:"bottom"
+  },{
+    element:"#searchtag",
+    description:"Use this button to search an address matching the a TAG, i.e. https://kiota.me/ATIAKOXL9. In this case, ATIAKOXL9 is the TAG.",
+    placement:"bottom"
+  }],
+  onComplete:function() {
+    warn.innerHTML = "Always check if the last trytes of the URL matches the address!"
+    setTimeout(function () { $('.warn').fadeOut('slow'); }, 5000);
+  }
+};
+createSequence(options);
+</script>
 </body>
-
 </html>

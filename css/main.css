@@ -1,11 +1,9 @@
-	html, body {
-	  height: 100%;
-	}
 
 	body {
 	  display: flex;
 	  flex-direction: column;
 	  font-family: 'Jura', sans-serif;
+	  background-color: #FFF;
 	}
 
 	h5 {
@@ -32,7 +30,6 @@
 
 	input {
 	  font-size: 13.5px;
-	  font-family: monospace;
 	  padding: 12px;
 	  border: 1px solid #ccc;
 	  width: 100%;
@@ -47,7 +44,10 @@
 	}
 
 	input:hover {
-	  box-shadow: 0px 0px 12px -5px #585858;
+	box-shadow: 0 1px 1px rgba(0,0,0,.1);
+	background-color: #f8f9fa;
+	border: 1px solid #dadce0;
+	color: #202124;
 	}
 
 	input:-webkit-autofill {
@@ -58,36 +58,42 @@
 	  background-color: rgb(232, 240, 254) !important;
 	}
 
-	textarea {
-	  -webkit-transition: all 0.7s ease 0s;
-	  -moz-transition: all 0.7s ease 0s;
-	  -o-transition: all 0.7s ease 0s;
-	  transition: all 0.7s ease 0s;
-	  font-size: 13.5px;
-	  font-family: monospace;
-	  padding: 12px;
-	  border: 1px solid #ccc;
+	input.text {
+	  font-size: 15px;
+	  padding: 15px;
+	  padding-inline-start: 52px;
+	  border: 0;
+	  box-shadow: 0 1px 4px 0 rgba(12, 12, 13, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.15);
+	  -moz-context-properties: fill;
+	  fill: var(--newtab-search-icon-color);
+	  border-radius: 3px;
 	  width: 100%;
-	  outline-color: #7be483;
 	  -webkit-box-sizing: border-box;
 	  -moz-box-sizing: border-box;
 	  box-sizing: border-box;
 	  box-sizing: padding-box;
 	  word-break: break-word;
-	  max-height: 70px;
-	  resize: none;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
 	  overflow: hidden;
+	  outline: none;
+	  resize: none;
+	  background-color: transparent;
+
 	}
 
-	textarea:hover {
-	  box-shadow: 0px 0px 12px -5px #585858;
+	input.text {
+	background: url("https://kiota.me/img/iota.svg") no-repeat left;
+	background-size: auto;
+	float: right;
+	background-position-x: 10px;
 	}
 
-	textarea:-webkit-autofill {
+	input:-webkit-autofill {
 	  background-color: #F2F2F2 !important;
 	}
 
-	textarea:-internal-autofill-selected {
+	input:-internal-autofill-selected {
 	  background-color: rgb(232, 240, 254) !important;
 	}
 
@@ -96,30 +102,108 @@
 	}
 
 	.footer {
-	  text-align: center;
-	  padding: 30px;
+	position: fixed;
+	bottom: 0;
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+	}
+
+	.warn {
+		color: red;
+		text-align: center;
+		display: block;
+		padding-top: 30px;
+	}
+
+	.tooltip-helper-active-description {
+	  background-color: #FFF;
+	  position: absolute;
+	  font-size: 15px;
+	  border: 1px solid #ccc;
+	  border-radius: 5px;
+	  height: max-content;
+	  max-width: 500px;
+	  z-index: 9998;
+	  transition-property: transform;
+	  will-change: transform;
+	  transform: translateX(0px) translateY(0px);
+	  transition-duration: 150ms;
+	  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+	}
+
+	.tooltip-helper-active-description p {
+	  color: #333;
+	  overflow-y: auto;
+	  height: 75%;
+	  padding: 10px;
+	  margin: 0 !important;
+	}
+
+	.tooltip-helper-next-sequence,
+	.tooltip-helper-prev-sequence {
+	  background-color: rgb(22, 121, 251);
+	  border: none;
+	  border-radius: 2px;
+	  outline: none;
+	  padding: 3px 10px;
+	  margin: 3px;
+	  color: #fff;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  height: 25px;
 	}
 
 	.submitbtn {
-	  background-color: #f5f5f5;
-	  border-radius: 1px padding;
+	  background-color: #f8f9fa;
+	  border:1px solid #f8f9fa;
+	  border-radius: 5px;
 	  color: #555;
-	  width: 48%;
-	  margin: 30px auto 0px auto;
+	  width: 33%;
 	  cursor: pointer;
+	  margin: 10px;
+	}
+
+	.buttons_main {
+		padding-top: 80px;
+		text-align: center;
+	}
+	.buttons {
+		padding-top: 80px;
+		display: flex;
+		margin: auto;
+		width: 100%;
 	}
 
 	.tagbutton {
 	  float: right;
-	  display: none;
+	  
 	}
 
 	#copybtn {
 	  display: none;
+	  background-color: #f8f9fa;
+	  border:1px solid #f8f9fa;
+	  border-radius: 5px;
+	  color: #555;
+	  width: 33%;
+	  cursor: pointer;
+	  text-align: center;
 	}
 
 	#copybtnaddress {
-	  display: none;
+ 	 display: none;
+	 margin: 30px auto;
+	 width: 33%;
+	 margin: auto;
+	}
+
+	#backhome {
+ 	 display: none;
+	 margin: 30px auto;
+	 width: 33%;
+	 margin: auto;
 	}
 
 	#addressplaceholder {
@@ -148,10 +232,7 @@
 	  margin-left: auto;
 	  margin-right: auto;
 	}
-	.info:hover {
-	  box-shadow: 0px 0px 12px -5px #585858;
 
-	}
 	.infotitle {
 	  text-align: center; 
 	  margin: 60px 0 -20px 0;
@@ -222,7 +303,7 @@
 	}
 
 	.logoarea {
-	  padding-bottom: 30px;
+	  padding-bottom: 40px;
 	}
 
 	.logo {
@@ -240,12 +321,3 @@
 	  color: #333;
 	}
 
-	@media only screen and (max-width: 728px) {
-	  .main {
-	    padding-top: 100px !important;
-	  }
-	  .submitbtn {
-	    background-color: #f5f5f5;
-	    border-radius: 1px padding: 10px;
-	    font-size: 12px;
-	  }

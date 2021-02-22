@@ -29,7 +29,7 @@ if (window.location.host == 'kiota.me') {
   }
 } else {
   $(function () {
-    document.getElementById('UserInput').placeholder = 'Enter Address or KIOTA.me/TAG'
+    document.getElementById('UserInput')
     document.getElementsByClassName('tagbutton')[0].style.display = "block";
   });
 
@@ -49,7 +49,7 @@ async function sendTransaction() {
     //update website elements
     document.getElementById("inputs").style.display = "none";
     let sendinfo = document.createElement('span')
-    sendinfo.innerHTML = ('Sending transaction...')
+    sendinfo.innerHTML = ('Creating Short Address...')
     sendinfo.className = "urldata"
     document.getElementById('urldata').style.display = "block";
     document.getElementById('urldata').appendChild(sendinfo)
@@ -145,6 +145,7 @@ async function getAddressWithTag(tag) {
 
       document.getElementById('addressplaceholder').href = results[0]
       document.getElementById('copybtnaddress').style.display = "block";
+      document.getElementById('backhome').style.display = "block";
       document.getElementById("infoblock").classList.remove('hide');
     }
   }
