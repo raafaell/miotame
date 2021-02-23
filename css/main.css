@@ -268,8 +268,19 @@
 	}
 
 	#blockright {
-	  max-width: 172px;
-	  display: none;
+      min-width: 225px;
+	  margin: auto;
+	}
+	#balance {
+	  display: block;
+	  font-size: 20px;
+	  font-family: ;
+	  text-align: center;
+	}
+	.titles {
+		text-align: center;
+		display: block;
+		padding: 10px 0;
 	}
 
 	#QR {
@@ -350,3 +361,17 @@
 		font-size: 13px;
 	  }
 	}
+
+	.heart {
+		padding: 10px;
+		    -webkit-animation: mover 2s infinite  alternate;
+		    animation: mover 2s infinite  alternate;
+		}
+		@-webkit-keyframes mover {
+		    0% { transform: translateY(0); }
+		    100% { transform: translateY(-10px); }
+		}
+		@keyframes mover {
+		    0% { transform: translateY(0); }
+		    100% { transform: translateY(-10px); }
+		}

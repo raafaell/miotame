@@ -41,11 +41,10 @@
           <input class="submitbtn" id="createurl" type="button" name="submit" value="Create Short URL" title="Shorten Your Address" onclick="sendTransaction()">
           <input class="submitbtn" id="searchtag" type="button" name="submit" value="Find Address" title="Find Address With TAG" onclick="getAddressWithTag(document.getElementById('UserInput').value)">
         </div>
+      </div>
 
         <span class="warn" id="warn"></span>
 
-
-      </div>
 
       <span class="urldata" id="urldata"></span>
       <input id="copybtn" type="button" name="submit" value="Copy URL" onclick="copyElement('URL', '.baffle')">
@@ -57,7 +56,10 @@
           <span class="QR" id="QR">
             <canvas id="qrcode"></canvas>
           </span>
-          <span id="blockright">Some content here.</span>
+          <div id="blockright">
+            <span class="titles">Address Balance</span>
+            <span id="balance"></span>
+          </div>
         </div>
 
       </div>
@@ -70,7 +72,8 @@
 
     </div>
   <footer class="footer" id="footer">
-    © 2019 KIOTA.me // Powered by <a href="https://iota.org/" target="_blank">IOTA</a> // <a href="https://medium.com/@raafaelll/introducing-miota-me-a-decentralized-iota-address-shortener-a260c41a1e15" target="_blank">About</a> // <a href="https://github.com/raafaell/miotame" target="_blank"><img style="margin-bottom: -3px;" src="img/git.png" height="18" alt="Fork on Github"></a>
+    <div class="heart"><a href="https://kiota.me/ATIAKOXL9" title="Donate"><img src="img/like.svg" height="22px"></a></div>
+    (ɔ) Copyleft 2019 KIOTA.me // Powered by <a href="https://iota.org/" target="_blank">IOTA</a> <a href="https://github.com/raafaell/miotame" target="_blank"><img style="margin-bottom: -3px;" src="img/git.png" height="18" alt="Fork on Github"></a>
   </footer>
 
   </div>
@@ -106,7 +109,7 @@
   }],
   onComplete:function() {
     warn.innerHTML = "Always check if the last trytes of the URL matches the address!"
-    setTimeout(function () { $('.warn').fadeOut('slow'); }, 8000);
+    setTimeout(function () { $('.warn').fadeOut('slow'); }, 5000);
     document.cookie = "kiota";
   }
 };

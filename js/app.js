@@ -133,6 +133,12 @@ async function getAddressWithTag(tag) {
       link.href = "iota://" + results[0];
       link.rel = "noopener noreferrer"
       link.target = "_self"
+      getaddress = results[0]
+      iota.getBalances([getaddress], 100)
+        .then(({ balances }) => {
+        console.log('Balance: ' + balances)
+      document.getElementById('balance').innerHTML = balances.toLocaleString('en-US') + " i";
+        })
 
       let deeplinktitle = document.createElement('span');
       deeplinktitle.className = "deeplinktitle"
