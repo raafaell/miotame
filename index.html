@@ -80,9 +80,11 @@
 
   <script type="text/javascript">
 
-    if (document.cookie.split(';').some((item) => item.trim().startsWith('kiota'))) {
-    console.log('Cookie exists, wont show tooltips')
-} else {
+    if (window.location.href != 'https://kiota.me/') {
+    console.log('Not homepage, skip tooltips') } 
+    else if (document.cookie.split(';').some((item) => item.trim().startsWith('kiota'))) {
+    console.log('Cookie exists, wont show tooltips') }
+    else {
   const options = {
   backdropColor:"transparent || #f2f2f2",
   sequence:[{
